@@ -1,25 +1,46 @@
 package com.example.testing.androidlearn;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-    private ListView rv1;
-    private ListView rv2;
+    private Button btnHorizontal;
+    private Button btnCustomView;
+    private Button btnNestedScroll;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
-        rv1 = findViewById(R.id.rv_1);
-        rv2 = findViewById(R.id.rv_2);
-        String[] strs1 = {"1", "2","1", "2","1", "2","1", "2","1", "2","1", "2","1", "2"};
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, strs1);
-        rv1.setAdapter(adapter1);
+        setContentView(R.layout.activity_main);
+        btnHorizontal = findViewById(R.id.btn_horizontal);
+        btnHorizontal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(HorizontalActivity.class);
+            }
+        });
 
-        String[] strs2 = {"A", "B","A", "B","A", "B","A", "B","A", "B","A", "B","A", "B","A", "B"};
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, strs2);
-        rv2.setAdapter(adapter2);
+        btnCustomView = findViewById(R.id.btn_custom);
+        btnCustomView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(CustomActivity.class);
+            }
+        });
+
+        btnNestedScroll = findViewById(R.id.btn_nestscroll);
+        btnNestedScroll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(NestedScrollActivity.class);
+            }
+        });
+    }
+
+    private void startActivity(Class c) {
+        Intent intent = new Intent(MainActivity.this, c);
+        startActivity(intent);
     }
 }

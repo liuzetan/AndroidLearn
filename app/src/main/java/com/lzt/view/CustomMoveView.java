@@ -7,19 +7,19 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Scroller;
 
-public class CustomView extends View {
+public class CustomMoveView extends View {
     private int lastX;
     private int lastY;
     private Scroller mScroller;
-    public CustomView(Context context) {
+    public CustomMoveView(Context context) {
         this(context, null);
     }
 
-    public CustomView(Context context, @Nullable AttributeSet attrs) {
+    public CustomMoveView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public CustomView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public CustomMoveView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mScroller = new Scroller(context);
     }
@@ -55,8 +55,8 @@ public class CustomView extends View {
                 int offsetX = x - lastX;
                 int offsetY = y - lastY;
                 //layout方法实现移动。
-//                layout(getLeft() + offsetX, getTop() + offsetY,
-//                        getRight() + offsetX, getBottom() + offsetY);
+                layout(getLeft() + offsetX, getTop() + offsetY,
+                        getRight() + offsetX, getBottom() + offsetY);
 
                 //offsetLeftAndRight和offsetTopAndBottom方法实现移动。
 //                offsetLeftAndRight(offsetX);
