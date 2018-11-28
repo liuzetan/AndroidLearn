@@ -16,6 +16,7 @@ public class NestedScrollChildView extends LinearLayout implements NestedScrolli
     private int[] consumed = new int[2];
     private int lastY;
     private int showHeight;
+    int consumedAll = 0;
 
     public NestedScrollChildView(Context context) {
         super(context);
@@ -43,6 +44,7 @@ public class NestedScrollChildView extends LinearLayout implements NestedScrolli
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                consumedAll = 0;
                 lastY = (int) event.getRawY();
                 break;
             case MotionEvent.ACTION_MOVE:
@@ -51,6 +53,7 @@ public class NestedScrollChildView extends LinearLayout implements NestedScrolli
                 lastY = y;
                 if ( startNestedScroll(ViewCompat.SCROLL_AXIS_VERTICAL, ViewCompat.TYPE_TOUCH)
                         && dispatchNestedPreScroll(0, dy, consumed, offset, ViewCompat.TYPE_TOUCH)) {
+                    consumedAll += consumed[1];
                     int remain = dy - consumed[1];
                     if (remain != 0) {
                         Log.e("TAG", "remain = " + remain);
@@ -59,6 +62,24 @@ public class NestedScrollChildView extends LinearLayout implements NestedScrolli
                 } else {
                     scrollBy(0, -dy);
                 }
+                break;
+            case MotionEvent.ACTION_UP:
+                if (getScrollY() == 0) {
+                    if (consumedAll < 0) {
+                        dispatchNestedPreScroll(0, -1000, consumed, offset, ViewCompat.TYPE_TOUCH);
+
+                    } else if (consumedAll < 200) {
+                        dispatchNestedPreScroll(0, -consumedAll, consumed, offset, ViewCompat.TYPE_TOUCH);
+                    } else {
+
+                        dispatchNestedPreScroll(0, 10000, consumed, offset, ViewCompat.TYPE_TOUCH);
+                    }
+                }
+//                if (getScrollY() < 100) {
+//                    scrollTo(0, 0);
+//                } else {
+//                    scrollTo(0, getMeasuredHeight() - showHeight);
+//                }
                 break;
         }
         return true;
