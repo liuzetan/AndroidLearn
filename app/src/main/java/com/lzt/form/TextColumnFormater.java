@@ -35,7 +35,7 @@ public class TextColumnFormater implements IColumnFormater {
         StaticLayout staticLayout = new StaticLayout(s, paint, width, Layout.Alignment.ALIGN_NORMAL,
                 1.0f, 0.0f, false);
         if (staticLayout.getLineCount() == 1) {
-            return new int[]{(int) paint.measureText(s), staticLayout.getHeight()};
+            return new int[]{(int) paint.measureText(s) + 2, staticLayout.getHeight()};
         } else {
             return new int[]{width, staticLayout.getHeight()};
         }
@@ -44,11 +44,11 @@ public class TextColumnFormater implements IColumnFormater {
     @Override
     public void draw(Canvas canvas, Object obj, Rect rect, int padding) {
         Rect backRect = new Rect(rect);
-        backRect.left += lineWidth;
-        backRect.top += lineWidth;
-        backRect.right -= lineWidth;
-        backRect.bottom -= lineWidth;
-        canvas.drawRect(rect, backPaint);
+        backRect.left += lineWidth/2;
+        backRect.top = backRect.top + lineWidth/2;
+        backRect.right -= lineWidth/2;
+        backRect.bottom = backRect.bottom - lineWidth/2;
+        canvas.drawRect(backRect, backPaint);
         canvas.drawLine(rect.left, rect.bottom, rect.right, rect.bottom, linePaint);
         canvas.drawLine(rect.right, rect.top, rect.right, rect.bottom, linePaint);
 
