@@ -4,16 +4,18 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.lzt.DisplayUtils;
 
-public class FormView extends View {
+public class FormView extends View implements OnFormChangeListener{
     private int defaultWidth = DisplayUtils.dp2px(300);
     private int defaultHeight = DisplayUtils.dp2px(200);
 
     private FormData mFormData;
     private FormProvider mFormProvider;
+    private TouchProcessor mTouchProcessor;
 
     public FormView(Context context) {
         this(context, null);
@@ -30,6 +32,7 @@ public class FormView extends View {
 
     private void init() {
         mFormProvider = new FormProvider();
+        mTouchProcessor = new TouchProcessor(this);
     }
 
     public void setFormData(FormData formData) {
@@ -59,6 +62,21 @@ public class FormView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        mFormProvider.draw(canvas, mFormData);
+        float x = mTouchProcessor.getTranslateX();
+        float y = mTouchProcessor.getTranslateY();
+        mFormProvider.draw(canvas, mFormData, x, y, x + getMeasuredWidth(), y + getMeasuredHeight());
+        mTouchProcessor.setContentSize(mFormProvider.getContentSize());
+        mTouchProcessor.setVisibleSize(getMeasuredWidth(), getMeasuredHeight());
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+
+        return mTouchProcessor.onTouchEvent(event);
+    }
+
+    @Override
+    public void onChanged(float zoom, float translateX, float translateY) {
+        postInvalidate();
     }
 }

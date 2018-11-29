@@ -17,6 +17,7 @@ public class Column {
     private List<Rect> positionList;
     private IColumnFormater columnFormater;
     int currentTop = 0;
+    private int left;
 
     public Column(String name, List<Object> data) {
         this.name = name;
@@ -32,6 +33,7 @@ public class Column {
     }
 
     public int calculatePosition(int left) {
+        this.left = left;
         int w = 0;
         if (positionList == null) {
             positionList = new ArrayList<>();
@@ -91,10 +93,17 @@ public class Column {
         this.maxWidth = maxWidth;
     }
 
-    public void draw(Canvas canvas) {
+    public void draw(Canvas canvas, float translateX, float translateY, float right, float bottom) {
         for (int i = 0; i < data.size(); ++i) {
             Object obj = data.get(i);
-            columnFormater.draw(canvas, obj, positionList.get(i), padding);
+            Rect rect = positionList.get(i);
+            if (rect.right < translateX || rect.bottom < translateY) continue;
+            if (rect.left > right || rect.top > bottom) break;
+            rect.left -= translateX;
+            rect.right -= translateX;
+            rect.top -= translateY;
+            rect.bottom -= translateY;
+            columnFormater.draw(canvas, obj, rect, padding);
         }
     }
 }

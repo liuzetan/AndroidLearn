@@ -5,14 +5,20 @@ import android.graphics.Rect;
 
 public class FormProvider {
 
-    public void draw(Canvas canvas, FormData formData) {
+    private int[] contentSize = new int[2];
+
+    public void draw(Canvas canvas, FormData formData, float translateX, float translateY, float right, float bottom) {
         if (formData == null) {
             return;
         }
         measure(formData);
         for (Column column : formData.getColumnList()) {
-            column.draw(canvas);
+            column.draw(canvas, translateX, translateY, right, bottom);
         }
+    }
+
+    public int[] getContentSize() {
+        return contentSize;
     }
 
     private void measure(FormData formData) {
@@ -20,6 +26,7 @@ public class FormProvider {
         for (Column column : formData.getColumnList()) {
             left += column.calculatePosition(left);
         }
+        contentSize[0] = left;
         int hNum = formData.getColumnList().get(0).getData().size();
         int curTop = 0;
         for (int i = 0; i < hNum; ++i) {
@@ -35,5 +42,6 @@ public class FormProvider {
             }
             curTop += h;
         }
+        contentSize[1] = curTop;
     }
 }
