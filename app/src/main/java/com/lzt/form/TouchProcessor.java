@@ -150,7 +150,7 @@ public class TouchProcessor implements GestureDetector.OnGestureListener, ScaleG
             }
         });
         int duration = (int) (Math.abs(scroller.getFinalY()) * flingRate) / 2;
-        valueAnimator.setDuration(duration > 300 ? 300 : duration);
+        valueAnimator.setDuration(duration > 3000 ? 3000 : duration);
         valueAnimator.start();
     }
 
