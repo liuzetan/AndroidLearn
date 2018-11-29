@@ -12,6 +12,9 @@ import android.widget.Scroller;
 import com.lzt.MyApplication;
 
 public class TouchProcessor implements GestureDetector.OnGestureListener, ScaleGestureDetector.OnScaleGestureListener {
+    private static float DEFAULT_MAX_ZOOM = 2.0f;
+    private static float DEFAULT_MIN_ZOOM = 1.0f;
+
     private GestureDetector mGestureDetector;
     private ScaleGestureDetector mScalGestureDetector;
     private boolean canZoom = true;
@@ -23,6 +26,9 @@ public class TouchProcessor implements GestureDetector.OnGestureListener, ScaleG
     private int[] visibleSize = new int[2];
     private Scroller scroller;
     private float flingRate = 0.5f;
+    private float zoom = 1.0f;
+    private float tmpZoom = 1.0f;
+    private boolean isZooming = false;
 
     public TouchProcessor(OnFormChangeListener listener) {
         this.listener = listener;
@@ -46,6 +52,10 @@ public class TouchProcessor implements GestureDetector.OnGestureListener, ScaleG
 
     public float getTranslateY() {
         return translateY;
+    }
+
+    public float getZoom() {
+        return zoom;
     }
 
     public boolean isCanZoom() {
@@ -113,7 +123,6 @@ public class TouchProcessor implements GestureDetector.OnGestureListener, ScaleG
                 ViewConfiguration.get(MyApplication.getmContext()).getScaledMinimumFlingVelocity()) {
             scroller.setFinalX(0);
             scroller.setFinalY(0);
-            tempTranslateX = translateX;
             tempTranslateY = translateY;
             scroller.fling(0, 0, (int) velocityX, (int) velocityY, -50000, 50000
                     , -50000, 50000);
@@ -126,7 +135,6 @@ public class TouchProcessor implements GestureDetector.OnGestureListener, ScaleG
     private float lastY;
     private TimeInterpolator interpolator = new DecelerateInterpolator();
 
-    private float tempTranslateX;
     private float tempTranslateY;
 
     private void startFling() {
@@ -165,16 +173,39 @@ public class TouchProcessor implements GestureDetector.OnGestureListener, ScaleG
 
     @Override
     public boolean onScale(ScaleGestureDetector detector) {
-        return false;
+        float oldZoom = zoom;
+        boolean isScaleEnd = false;
+        float scale = detector.getScaleFactor();
+        if (scale > 1 && zoom == DEFAULT_MAX_ZOOM) {
+            return true;
+        }
+        if (scale < 1 && zoom == DEFAULT_MIN_ZOOM) {
+            return true;
+        }
+        this.zoom = tmpZoom * scale;
+        if (zoom >= DEFAULT_MAX_ZOOM) {
+            this.zoom = DEFAULT_MAX_ZOOM;
+            isScaleEnd = true;
+        } else if (this.zoom <= DEFAULT_MIN_ZOOM) {
+            this.zoom = DEFAULT_MIN_ZOOM;
+            isScaleEnd = true;
+        }
+        float factor = zoom / oldZoom;
+        translateX = (int) (translateX * factor);
+        translateY = (int) (translateY * factor);
+        notifyTableChanged();
+        return isScaleEnd;
     }
 
     @Override
     public boolean onScaleBegin(ScaleGestureDetector detector) {
-        return false;
+        tmpZoom = this.zoom;
+        isZooming = true;
+        return true;
     }
 
     @Override
     public void onScaleEnd(ScaleGestureDetector detector) {
-
+        isZooming = false;
     }
 }

@@ -32,7 +32,7 @@ public class Column {
         this.columnFormater = columnFormater;
     }
 
-    public int calculatePosition(int left) {
+    public int calculatePosition(int left, float zoom) {
         this.left = left;
         int w = 0;
         if (positionList == null) {
@@ -44,9 +44,11 @@ public class Column {
             columnFormater = new TextColumnFormater();
         }
         for (Object obj : data) {
-            int[] wh = columnFormater.measureCellWidth(obj.toString(), maxWidth);
+            int[] wh = columnFormater.measureCellWidth(obj.toString(), maxWidth, zoom);
             wh[0] += 2*padding;
             wh[1] += 2*padding;
+            wh[0] *= zoom;
+            wh[1] *= zoom;
             positionList.add(new Rect(left, currentTop, left + wh[0], currentTop + wh[1]));
             currentTop += wh[1];
             w = Math.max(w, wh[0]);
@@ -93,7 +95,7 @@ public class Column {
         this.maxWidth = maxWidth;
     }
 
-    public void draw(Canvas canvas, float translateX, float translateY, float right, float bottom) {
+    public void draw(Canvas canvas, float zoom, float translateX, float translateY, float right, float bottom) {
         for (int i = 0; i < data.size(); ++i) {
             Object obj = data.get(i);
             Rect rect = positionList.get(i);
@@ -103,7 +105,7 @@ public class Column {
             rect.right -= translateX;
             rect.top -= translateY;
             rect.bottom -= translateY;
-            columnFormater.draw(canvas, obj, rect, padding);
+            columnFormater.draw(canvas, obj, rect, padding, zoom);
         }
     }
 }

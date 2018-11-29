@@ -15,12 +15,13 @@ public class TextColumnFormater implements IColumnFormater {
     private Paint backPaint;
     private Paint linePaint;
     private int lineWidth = DisplayUtils.dp2px(2);
+    private int textSize = DisplayUtils.dp2px(16);
 
     public TextColumnFormater() {
         paint = new TextPaint();
         paint.setAntiAlias(true);
         paint.setColor(Color.BLACK);
-        paint.setTextSize(DisplayUtils.dp2px(16));
+        paint.setTextSize(textSize);
 
         backPaint = new Paint();
         backPaint.setColor(Color.LTGRAY);
@@ -31,7 +32,8 @@ public class TextColumnFormater implements IColumnFormater {
     }
 
     @Override
-    public int[] measureCellWidth(String s, int width) {
+    public int[] measureCellWidth(String s, int width, float zoom) {
+        paint.setTextSize(textSize);
         StaticLayout staticLayout = new StaticLayout(s, paint, width, Layout.Alignment.ALIGN_NORMAL,
                 1.0f, 0.0f, false);
         if (staticLayout.getLineCount() == 1) {
@@ -42,15 +44,17 @@ public class TextColumnFormater implements IColumnFormater {
     }
 
     @Override
-    public void draw(Canvas canvas, Object obj, Rect rect, int padding) {
+    public void draw(Canvas canvas, Object obj, Rect rect, int padding, float zoom) {
         Rect backRect = new Rect(rect);
         backRect.left += lineWidth/2;
-        backRect.top = backRect.top + lineWidth/2;
+        backRect.top += lineWidth/2;
         backRect.right -= lineWidth/2;
-        backRect.bottom = backRect.bottom - lineWidth/2;
+        backRect.bottom -= lineWidth/2;
         canvas.drawRect(backRect, backPaint);
         canvas.drawLine(rect.left, rect.bottom, rect.right, rect.bottom, linePaint);
         canvas.drawLine(rect.right, rect.top, rect.right, rect.bottom, linePaint);
+
+        paint.setTextSize(textSize * zoom);
 
         StaticLayout staticLayout = new StaticLayout(obj.toString(), paint, rect.width() - 2*padding, Layout.Alignment.ALIGN_NORMAL,
                 1.0f, 0.0f, false);

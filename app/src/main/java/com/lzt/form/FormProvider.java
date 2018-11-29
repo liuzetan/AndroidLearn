@@ -7,13 +7,13 @@ public class FormProvider {
 
     private int[] contentSize = new int[2];
 
-    public void draw(Canvas canvas, FormData formData, float translateX, float translateY, float right, float bottom) {
+    public void draw(Canvas canvas, FormData formData, float zoom, float translateX, float translateY, float right, float bottom) {
         if (formData == null) {
             return;
         }
-        measure(formData);
+        measure(formData, zoom);
         for (Column column : formData.getColumnList()) {
-            column.draw(canvas, translateX, translateY, right, bottom);
+            column.draw(canvas, zoom, translateX, translateY, right, bottom);
         }
     }
 
@@ -21,10 +21,10 @@ public class FormProvider {
         return contentSize;
     }
 
-    private void measure(FormData formData) {
+    private void measure(FormData formData, float zoom) {
         int left = 0;
         for (Column column : formData.getColumnList()) {
-            left += column.calculatePosition(left);
+            left += column.calculatePosition(left, zoom);
         }
         contentSize[0] = left;
         int hNum = formData.getColumnList().get(0).getData().size();

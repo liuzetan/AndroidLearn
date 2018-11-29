@@ -64,7 +64,8 @@ public class FormView extends View implements OnFormChangeListener{
     protected void onDraw(Canvas canvas) {
         float x = mTouchProcessor.getTranslateX();
         float y = mTouchProcessor.getTranslateY();
-        mFormProvider.draw(canvas, mFormData, x, y, x + getMeasuredWidth(), y + getMeasuredHeight());
+        float zoom = mTouchProcessor.getZoom();
+        mFormProvider.draw(canvas, mFormData, zoom, x, y, x + getMeasuredWidth(), y + getMeasuredHeight());
         mTouchProcessor.setContentSize(mFormProvider.getContentSize());
         mTouchProcessor.setVisibleSize(getMeasuredWidth(), getMeasuredHeight());
     }
