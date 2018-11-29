@@ -10,6 +10,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnHorizontal;
     private Button btnCustomView;
     private Button btnNestedScroll;
+    private Button btnFormView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +36,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(NestedScrollActivity.class);
+            }
+        });
+
+        btnFormView = findViewById(R.id.btn_formview);
+        btnFormView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(FormActivity.class);
             }
         });
     }
