@@ -6,6 +6,7 @@ import android.graphics.Rect;
 public class FormProvider {
 
     private int[] contentSize = new int[2];
+    private boolean isPinTitle = true;
 
     public void draw(Canvas canvas, FormData formData, float zoom, float translateX, float translateY, float right, float bottom) {
         if (formData == null) {
@@ -15,7 +16,6 @@ public class FormProvider {
         int clipCount = 0;
         int drawLeft = 0;
         for (Column column : formData.getColumnList()) {
-
             column.draw(canvas, zoom, drawLeft, translateX, translateY, right, bottom);
             if (column.isPined() && column.getLeft() < translateX + drawLeft) {
                 canvas.save();

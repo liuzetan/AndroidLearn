@@ -21,6 +21,7 @@ public class Column {
     private int width;
     private boolean isPined = false;
     private boolean isAutoMerge = false;
+    private boolean pinTitle = true;
 
     public Column(String name, List<Object> data) {
         this.name = name;
@@ -120,12 +121,22 @@ public class Column {
         }
         if (rect.left > right || rect.top > bottom)
             return;
-        if (rect.right >= translateX && rect.bottom >= translateY) {
+        if (pinTitle) {
             rect.left -= translateX;
             rect.right -= translateX;
-            rect.top -= translateY;
-            rect.bottom -= translateY;
+//            rect.top -= translateY;
+//            rect.bottom -= translateY;
             columnFormater.drawTitleCell(canvas, name, rect, padding, zoom);
+            canvas.save();
+            canvas.clipRect(0, rect.bottom, right, bottom);
+        } else {
+            if (rect.right >= translateX && rect.bottom >= translateY) {
+                rect.left -= translateX;
+                rect.right -= translateX;
+                rect.top -= translateY;
+                rect.bottom -= translateY;
+                columnFormater.drawTitleCell(canvas, name, rect, padding, zoom);
+            }
         }
 
         for (int i = 0; i < data.size(); ++i) {
@@ -157,6 +168,9 @@ public class Column {
             }
             columnFormater.drawContentCell(canvas, obj, rect, padding, zoom);
 
+        }
+        if (pinTitle) {
+            canvas.restore();
         }
     }
 
