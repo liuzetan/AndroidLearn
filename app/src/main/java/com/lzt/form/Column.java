@@ -20,6 +20,7 @@ public class Column {
     private int left;
     private int width;
     private boolean isPined = false;
+    private boolean isAutoMerge = false;
 
     public Column(String name, List<Object> data) {
         this.name = name;
@@ -117,7 +118,17 @@ public class Column {
             rect.right -= translateX;
             rect.top -= translateY;
             rect.bottom -= translateY;
+            if (isAutoMerge && i < data.size() - 1) {
+                int j = i + 1;
+                while (j < data.size() && data.get(j).equals(data.get(i))) {
+                    j++;
+                }
+                rect.bottom = positionList.get(j - 1).bottom;
+                rect.bottom -= translateY;
+                i = j - 1;
+            }
             columnFormater.draw(canvas, obj, rect, padding, zoom);
+
         }
     }
 
@@ -143,5 +154,13 @@ public class Column {
 
     public void setWidth(int width) {
         this.width = width;
+    }
+
+    public boolean isAutoMerge() {
+        return isAutoMerge;
+    }
+
+    public void setAutoMerge(boolean autoMerge) {
+        isAutoMerge = autoMerge;
     }
 }

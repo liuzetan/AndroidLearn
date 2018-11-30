@@ -59,7 +59,8 @@ public class TextColumnFormater implements IColumnFormater {
         StaticLayout staticLayout = new StaticLayout(obj.toString(), paint, rect.width() - 2*padding, Layout.Alignment.ALIGN_NORMAL,
                 1.0f, 0.0f, false);
         canvas.save();
-        canvas.translate(rect.left + padding, rect.top + padding);
+        int mindY = (rect.bottom + rect.top) /2;
+        canvas.translate(rect.left + padding, mindY - staticLayout.getHeight()/2);
         staticLayout.draw(canvas);
         canvas.restore();
     }

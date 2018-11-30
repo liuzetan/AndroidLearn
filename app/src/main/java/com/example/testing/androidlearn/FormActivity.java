@@ -33,7 +33,11 @@ public class FormActivity extends AppCompatActivity {
             columnList.add(column);
         }
         columnList.get(1).setPined(true);
-        columnList.get(3).setPined(true);
+        columnList.get(2).setPined(true);
+        columnList.get(3).setAutoMerge(true);
+        for (int i = 2; i < 5; ++i) {
+            columnList.get(3).getData().set(i, "mergeed");
+        }
         FormData formData = new FormData(columnList);
         formView.setFormData(formData);
     }
