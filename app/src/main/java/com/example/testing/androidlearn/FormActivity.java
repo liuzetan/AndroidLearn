@@ -22,7 +22,7 @@ public class FormActivity extends AppCompatActivity {
         List<Column> columnList = new ArrayList<>();
         for (int i = 0; i < 10; ++i) {
             List<Object> strings = new ArrayList<>();
-            for (int j = 0; j < 100; ++j) {
+            for (int j = 0; j < 60; ++j) {
                 if (j == 3 && i == 2) {
                     strings.add("valuedfgsdfgsdfvervdfsdfgvsdfvsdgdfgsdfgsfbgvfsghthrthrtdrt" + j);
                 } else {
@@ -34,6 +34,7 @@ public class FormActivity extends AppCompatActivity {
         }
         columnList.get(1).setPined(true);
         columnList.get(2).setPined(true);
+        columnList.get(2).setName("ccccccccccccccolum2");
         columnList.get(3).setAutoMerge(true);
         for (int i = 2; i < 5; ++i) {
             columnList.get(3).getData().set(i, "mergeed");

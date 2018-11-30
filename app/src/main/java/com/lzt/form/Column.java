@@ -37,6 +37,7 @@ public class Column {
 
     public int calculatePosition(int left, float zoom) {
         this.left = left;
+        this.currentTop = 0;
         int w = 0;
         if (positionList == null) {
             positionList = new ArrayList<>();
@@ -46,8 +47,18 @@ public class Column {
         if (columnFormater == null) {
             columnFormater = new TextColumnFormater();
         }
+
+        int[] wh = columnFormater.measureTitleWidth(name, maxWidth, zoom);
+        wh[0] += 2 * padding;
+        wh[1] += 2 * padding;
+        wh[0] *= zoom;
+        wh[1] *= zoom;
+        positionList.add(new Rect(left, currentTop, left + wh[0], currentTop + wh[1]));
+        currentTop += wh[1];
+        w = Math.max(w, wh[0]);
+
         for (Object obj : data) {
-            int[] wh = columnFormater.measureCellWidth(obj.toString(), maxWidth, zoom);
+            wh = columnFormater.measureCellWidth(obj.toString(), maxWidth, zoom);
             wh[0] += 2 * padding;
             wh[1] += 2 * padding;
             wh[0] *= zoom;
@@ -100,9 +111,26 @@ public class Column {
     }
 
     public void draw(Canvas canvas, float zoom, int drawLeft, float translateX, float translateY, float right, float bottom) {
+        Rect rect = new Rect(positionList.get(0));
+        if (isPined) {
+            if (rect.left < translateX + drawLeft) {
+                rect.left = (int) translateX + drawLeft;
+                rect.right = rect.left + width;
+            }
+        }
+        if (rect.left > right || rect.top > bottom)
+            return;
+        if (rect.right >= translateX && rect.bottom >= translateY) {
+            rect.left -= translateX;
+            rect.right -= translateX;
+            rect.top -= translateY;
+            rect.bottom -= translateY;
+            columnFormater.drawTitleCell(canvas, name, rect, padding, zoom);
+        }
+
         for (int i = 0; i < data.size(); ++i) {
             Object obj = data.get(i);
-            Rect rect = new Rect(positionList.get(i));
+            rect = new Rect(positionList.get(i+1));
             if (isPined) {
                 if (rect.left < translateX + drawLeft) {
                     rect.left = (int) translateX + drawLeft;
@@ -123,11 +151,11 @@ public class Column {
                 while (j < data.size() && data.get(j).equals(data.get(i))) {
                     j++;
                 }
-                rect.bottom = positionList.get(j - 1).bottom;
+                rect.bottom = positionList.get(j).bottom;
                 rect.bottom -= translateY;
                 i = j - 1;
             }
-            columnFormater.draw(canvas, obj, rect, padding, zoom);
+            columnFormater.drawContentCell(canvas, obj, rect, padding, zoom);
 
         }
     }

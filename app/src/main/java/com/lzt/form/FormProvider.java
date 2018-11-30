@@ -39,7 +39,7 @@ public class FormProvider {
             left += column.calculatePosition(left, zoom);
         }
         contentSize[0] = left;
-        int hNum = formData.getColumnList().get(0).getData().size();
+        int hNum = formData.getColumnList().get(0).getPositionList().size();
         int curTop = 0;
         for (int i = 0; i < hNum; ++i) {
             int h = 0;
