@@ -123,7 +123,8 @@ public class TouchProcessor implements GestureDetector.OnGestureListener, ScaleG
                 ViewConfiguration.get(MyApplication.getmContext()).getScaledMinimumFlingVelocity()) {
             scroller.setFinalX(0);
             scroller.setFinalY(0);
-            tempTranslateY = translateY;
+            tmpTranslateY = translateY;
+            tmpTranslateX = translateX;
             scroller.fling(0, 0, (int) velocityX, (int) velocityY, -50000, 50000
                     , -50000, 50000);
             isFling = true;
@@ -132,37 +133,72 @@ public class TouchProcessor implements GestureDetector.OnGestureListener, ScaleG
         return true;
     }
 
-    private float lastY;
+    private float lastPos;
     private TimeInterpolator interpolator = new DecelerateInterpolator();
 
-    private float tempTranslateY;
+    private float tmpTranslateY;
+    private float tmpTranslateX;
 
     private void startFling() {
+        int scrollX = (int) (scroller.getFinalX() * flingRate);
         int scrollY = (int) (scroller.getFinalY()* flingRate);
-        final ValueAnimator valueAnimator = ValueAnimator.ofInt(0, scrollY);
-        valueAnimator.setInterpolator(interpolator);
-        lastY = translateY;
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                if (isFling) {
-                    int y = (int) animation.getAnimatedValue();
-                    float newY = tempTranslateY - y;
-                    float distanceY = newY - lastY;
-                    lastY = (int) newY;
-                    nestedScroll(distanceY);
-                    notifyTableChanged();
-                } else {
-                    animation.cancel();
+        int duration = 1000;
+        if (Math.abs(scrollX) < Math.abs(scrollY)) {
+            final ValueAnimator valueAnimator = ValueAnimator.ofInt(0, scrollY);
+            valueAnimator.setInterpolator(interpolator);
+            lastPos = translateY;
+            valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    if (isFling) {
+                        int y = (int) animation.getAnimatedValue();
+                        float newY = tmpTranslateY - y;
+                        float distanceY = newY - lastPos;
+                        lastPos = (int) newY;
+                        flingY(distanceY);
+                        notifyTableChanged();
+                    } else {
+                        animation.cancel();
+                    }
                 }
-            }
-        });
-        int duration = (int) (Math.abs(scroller.getFinalY()) * flingRate) / 2;
-        valueAnimator.setDuration(duration > 3000 ? 3000 : duration);
-        valueAnimator.start();
+            });
+            duration = (int) (Math.abs(scroller.getFinalY()) * flingRate) / 2;
+            valueAnimator.setDuration(duration > 1000 ? 1000 : duration);
+            valueAnimator.start();
+        } else {
+            final ValueAnimator valueAnimator = ValueAnimator.ofInt(0, scrollX);
+            valueAnimator.setInterpolator(interpolator);
+            lastPos = translateX;
+            valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    if (isFling) {
+                        int x = (int) animation.getAnimatedValue();
+                        float newX = tmpTranslateX - x;
+                        float distanceX = newX - lastPos;
+                        lastPos = (int) newX;
+                        flingX(distanceX);
+                        notifyTableChanged();
+                    } else {
+                        animation.cancel();
+                    }
+                }
+            });
+            duration = (int) (Math.abs(scroller.getFinalY()) * flingRate) / 2;
+            valueAnimator.setDuration(duration > 1000 ? 1000 : duration);
+            valueAnimator.start();
+        }
+    }
+    private void flingX(float distance) {
+        translateX += distance;
+        if (translateX < 0) {
+            translateX = 0;
+        } else if (translateX > contentSize[0] - visibleSize[0]) {
+            translateX = contentSize[0] - visibleSize[0];
+        }
     }
 
-    private void nestedScroll(float distanceY) {
+    private void flingY(float distanceY) {
         translateY += distanceY;
         if (translateY < 0) {
             translateY = 0;
