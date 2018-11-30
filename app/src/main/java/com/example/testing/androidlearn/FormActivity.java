@@ -32,6 +32,8 @@ public class FormActivity extends AppCompatActivity {
             Column column = new Column("colum" + i, strings);
             columnList.add(column);
         }
+        columnList.get(1).setPined(true);
+        columnList.get(3).setPined(true);
         FormData formData = new FormData(columnList);
         formView.setFormData(formData);
     }

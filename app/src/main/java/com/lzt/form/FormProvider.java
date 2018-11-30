@@ -12,8 +12,20 @@ public class FormProvider {
             return;
         }
         measure(formData, zoom);
+        int clipCount = 0;
+        int drawLeft = 0;
         for (Column column : formData.getColumnList()) {
-            column.draw(canvas, zoom, translateX, translateY, right, bottom);
+
+            column.draw(canvas, zoom, drawLeft, translateX, translateY, right, bottom);
+            if (column.isPined() && column.getLeft() < translateX + drawLeft) {
+                canvas.save();
+                drawLeft += column.getWidth();
+                canvas.clipRect(drawLeft, 0, right, bottom);
+                clipCount++;
+            }
+        }
+        for (int i = 0; i < clipCount; ++i) {
+            canvas.restore();
         }
     }
 

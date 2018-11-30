@@ -18,6 +18,8 @@ public class Column {
     private IColumnFormater columnFormater;
     int currentTop = 0;
     private int left;
+    private int width;
+    private boolean isPined = false;
 
     public Column(String name, List<Object> data) {
         this.name = name;
@@ -45,8 +47,8 @@ public class Column {
         }
         for (Object obj : data) {
             int[] wh = columnFormater.measureCellWidth(obj.toString(), maxWidth, zoom);
-            wh[0] += 2*padding;
-            wh[1] += 2*padding;
+            wh[0] += 2 * padding;
+            wh[1] += 2 * padding;
             wh[0] *= zoom;
             wh[1] *= zoom;
             positionList.add(new Rect(left, currentTop, left + wh[0], currentTop + wh[1]));
@@ -60,6 +62,7 @@ public class Column {
         for (Rect r : positionList) {
             r.right = r.left + maxW;
         }
+        this.width = w;
         return w;
     }
 
@@ -95,17 +98,50 @@ public class Column {
         this.maxWidth = maxWidth;
     }
 
-    public void draw(Canvas canvas, float zoom, float translateX, float translateY, float right, float bottom) {
+    public void draw(Canvas canvas, float zoom, int drawLeft, float translateX, float translateY, float right, float bottom) {
         for (int i = 0; i < data.size(); ++i) {
             Object obj = data.get(i);
-            Rect rect = positionList.get(i);
-            if (rect.right < translateX || rect.bottom < translateY) continue;
-            if (rect.left > right || rect.top > bottom) break;
+            Rect rect = new Rect(positionList.get(i));
+            if (isPined) {
+                if (rect.left < translateX + drawLeft) {
+                    rect.left = (int) translateX + drawLeft;
+                    rect.right = rect.left + width;
+                }
+            }
+            if (rect.right < translateX || rect.bottom < translateY)
+                continue;
+            if (rect.left > right || rect.top > bottom)
+                break;
+
             rect.left -= translateX;
             rect.right -= translateX;
             rect.top -= translateY;
             rect.bottom -= translateY;
             columnFormater.draw(canvas, obj, rect, padding, zoom);
         }
+    }
+
+    public boolean isPined() {
+        return isPined;
+    }
+
+    public void setPined(boolean pined) {
+        isPined = pined;
+    }
+
+    public int getLeft() {
+        return left;
+    }
+
+    public void setLeft(int left) {
+        this.left = left;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
     }
 }
