@@ -20,7 +20,8 @@
         <activity android:name=".CustomActivity" />
         <activity android:name=".HorizontalActivity" />
         <activity android:name=".NestedScrollActivity" />
-        <activity android:name=".FormActivity"></activity>
+        <activity android:name=".FormActivity" />
+        <activity android:name=".ThirdStateCheckBoxActivity"></activity>
     </application>
 
 </manifest>

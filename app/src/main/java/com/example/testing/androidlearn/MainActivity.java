@@ -11,6 +11,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnCustomView;
     private Button btnNestedScroll;
     private Button btnFormView;
+    private Button btnThirdState;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +45,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(FormActivity.class);
+            }
+        });
+
+        btnThirdState = findViewById(R.id.btn_thirdstatecheckbox);
+        btnThirdState.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(ThirdStateCheckBoxActivity.class);
             }
         });
     }

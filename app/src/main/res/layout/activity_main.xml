@@ -31,5 +31,11 @@
             android:layout_height="40dp"
             android:id="@+id/btn_formview"
             android:text="FormView"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/btn_thirdstatecheckbox"
+            android:text="ThirdStateCheckBox"/>
     </LinearLayout>
 </ScrollView>
