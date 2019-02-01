@@ -37,5 +37,11 @@
             android:layout_height="40dp"
             android:id="@+id/btn_thirdstatecheckbox"
             android:text="ThirdStateCheckBox"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/btn_circleimage"
+            android:text="圆形图片"/>
     </LinearLayout>
 </ScrollView>

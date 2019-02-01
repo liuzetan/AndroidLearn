@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnNestedScroll;
     private Button btnFormView;
     private Button btnThirdState;
+    private Button btnCircleImage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +54,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(ThirdStateCheckBoxActivity.class);
+            }
+        });
+
+        btnCircleImage = findViewById(R.id.btn_circleimage);
+        btnCircleImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(CircleImageActivity.class);
             }
         });
     }

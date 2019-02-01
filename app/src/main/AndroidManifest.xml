@@ -21,7 +21,8 @@
         <activity android:name=".HorizontalActivity" />
         <activity android:name=".NestedScrollActivity" />
         <activity android:name=".FormActivity" />
-        <activity android:name=".ThirdStateCheckBoxActivity"></activity>
+        <activity android:name=".ThirdStateCheckBoxActivity" />
+        <activity android:name=".CircleImageActivity"></activity>
     </application>
 
 </manifest>
