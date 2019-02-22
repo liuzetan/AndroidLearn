@@ -18,10 +18,21 @@ android {
     }
     sourceSets {
         main() {
-            jniLibs.srcDirs = ['src/main/libs']
+//            jniLibs.srcDirs = ['src/main/libs']
             jni.srcDirs = []
         }
     }
+    externalNativeBuild {
+        ndkBuild {
+            path 'src/main/jni/Android.mk'
+        }
+    }
+//    packagingOptions {
+//        exclude 'lib/x86/libJniTest.so'
+//        exclude 'lib/armeabi-v7a/libJniTest.so'
+//        exclude 'lib/x86_64/libJniTest.so'
+//        exclude 'lib/arm64-v8a/libJniTest.so'
+//    }
 }
 
 dependencies {
