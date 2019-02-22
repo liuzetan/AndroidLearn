@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnFormView;
     private Button btnThirdState;
     private Button btnCircleImage;
+    private Button btnJni;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +63,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(CircleImageActivity.class);
+            }
+        });
+
+        btnJni = findViewById(R.id.btn_jni);
+        btnJni.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(JniActivity.class);
             }
         });
     }
