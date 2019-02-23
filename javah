@@ -1,0 +1,6 @@
+javac '-h' -d jni -classpath C:\Users\81289\androidProject\AndroidLearn\app\build\intermediates\classes\debug com.lzt.JniTest
+
+C:\Users\81289\androidProject\AndroidLearn\app\src\main\java\com
+
+
+javac -h . JniTest.java

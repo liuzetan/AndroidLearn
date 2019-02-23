@@ -10,4 +10,5 @@ public class JniTest {
 
     public native static String get();
     public native static int add();
+    public native static int minus();
 }

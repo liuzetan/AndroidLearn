@@ -16,8 +16,8 @@ public class JniActivity extends AppCompatActivity {
         setContentView(R.layout.activity_jni);
         tvName = findViewById(R.id.name);
         String name = JniTest.get();
-        tvName.setText(name);
         int n = JniTest.add();
-        Log.e("TAG", "" + n);
+        int m = JniTest.minus();
+        tvName.setText(name + "_" + m + "_" + n);
     }
 }
