@@ -18,6 +18,9 @@ public class JniActivity extends AppCompatActivity {
         String name = JniTest.get();
         int n = JniTest.add();
         int m = JniTest.minus();
-        tvName.setText(name + "_" + m + "_" + n);
+        JniTest t = new JniTest();
+        t.test(13);
+        String str = t.reverse("abcdefg");
+        tvName.setText(name + "_" + m + "_" + n + "_" + str);
     }
 }

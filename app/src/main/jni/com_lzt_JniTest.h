@@ -31,6 +31,22 @@ JNIEXPORT jint JNICALL Java_com_lzt_JniTest_add
 JNIEXPORT jint JNICALL Java_com_lzt_JniTest_minus
   (JNIEnv *, jclass);
 
+/*
+ * Class:     com_lzt_JniTest
+ * Method:    test
+ * Signature: (I)V
+ */
+JNIEXPORT void JNICALL Java_com_lzt_JniTest_test
+  (JNIEnv *, jobject, jint);
+
+/*
+ * Class:     com_lzt_JniTest
+ * Method:    reverse
+ * Signature: (Ljava/lang/String;)Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_com_lzt_JniTest_reverse
+  (JNIEnv *, jobject, jstring);
+
 #ifdef __cplusplus
 }
 #endif
