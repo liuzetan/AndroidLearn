@@ -9,6 +9,11 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+//        externalNativeBuild {
+//            cmake {
+//                cppFlags ""
+//            }
+//        }
     }
     buildTypes {
         release {
@@ -22,17 +27,25 @@ android {
             jni.srcDirs = []
         }
     }
-    externalNativeBuild {
-        ndkBuild {
-            path 'src/main/jni/Android.mk'
-        }
-    }
+//    externalNativeBuild {
+////        ndkBuild {
+////            path 'src/main/jni/Android.mk'
+////        }
+//        cmake {
+//            path 'CMakeLists.txt'
+//        }
+//    }
 //    packagingOptions {
 //        exclude 'lib/x86/libJniTest.so'
 //        exclude 'lib/armeabi-v7a/libJniTest.so'
 //        exclude 'lib/x86_64/libJniTest.so'
 //        exclude 'lib/arm64-v8a/libJniTest.so'
 //    }
+    externalNativeBuild {
+        cmake {
+            path 'CMakeLists.txt'
+        }
+    }
 }
 
 dependencies {
