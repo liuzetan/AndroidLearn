@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
+
+    <LinearLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/xunguang"
+        android:orientation="vertical">
+
+        <fragment
+            android:id="@+id/frag_jni_pixel"
+            android:name="com.lzt.blur.frags.JniPixelFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="1" />
+
+        <fragment
+            android:id="@+id/frag_jni_bitmap"
+            android:name="com.lzt.blur.frags.JniBitmapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="1" />
+
+        <fragment
+            android:id="@+id/frag_java"
+            android:name="com.lzt.blur.frags.JavaFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="1" />
+
+        <fragment
+            android:id="@+id/frag_anim"
+            android:name="com.lzt.blur.frags.AnimFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="1" />
+
+        <fragment
+            android:id="@+id/frag_rs"
+            android:name="com.lzt.blur.frags.RSFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_opt"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:padding="10dp"
+        android:text="Button"/>
+</RelativeLayout>

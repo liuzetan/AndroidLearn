@@ -49,5 +49,11 @@
             android:layout_height="40dp"
             android:id="@+id/btn_jni"
             android:text="进入JNI"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/btn_bitmap"
+            android:text="进入JNI Bitmap"/>
     </LinearLayout>
 </ScrollView>

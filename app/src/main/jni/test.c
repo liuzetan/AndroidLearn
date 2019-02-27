@@ -2,8 +2,10 @@
 #include<stdio.h>
 #include "com_lzt_JniTest.h"
 #include <string.h>
+#include "blur.h"
 
 #include <android/log.h>
+#include <android/bitmap.h>
 #define LOG_TAG "System.out.c"
 #define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
 
@@ -79,4 +81,48 @@ JNIEXPORT jstring JNICALL Java_com_lzt_JniTest_reverse
     jstring res = stoJstring(env, char1);
     (*env)->ReleaseStringUTFChars(env, jstr, char1);
     return res;
+}
+
+JNIEXPORT void JNICALL Java_com_lzt_JniTest_blurPixels
+        (JNIEnv *env, jclass cls, jintArray arr, jint w, jint h, jint r) {
+    jint *pixels;
+    pixels = (*env)->GetIntArrayElements(env, arr, 0);
+    if (pixels == NULL) {
+        LOGD("Input pixels is null");
+        return;
+    }
+    pixels = blur_ARGB_8888(pixels, w, h, r);
+    (*env)->ReleaseIntArrayElements(env, arr, pixels, 0);
+}
+
+JNIEXPORT void JNICALL Java_com_lzt_JniTest_blurBitmap
+        (JNIEnv *env, jclass cls, jobject obj, jint r) {
+    AndroidBitmapInfo infoIn;
+    void *pixels;
+
+    if (AndroidBitmap_getInfo(env, obj, &infoIn) != ANDROID_BITMAP_RESULT_SUCCESS) {
+        LOGD("Android bitmap getinfo failed");
+        return;
+    }
+
+    if (infoIn.format != ANDROID_BITMAP_FORMAT_RGB_565 &&
+            infoIn.format != ANDROID_BITMAP_FORMAT_RGBA_8888) {
+        LOGD("only surpport rgba8888 and rgb565");
+        return;
+    }
+
+    if (AndroidBitmap_lockPixels(env, obj, &pixels) != ANDROID_BITMAP_RESULT_SUCCESS) {
+        LOGD("Android bitmap lockPixels failed");
+        return;
+    }
+
+    int h = infoIn.height;
+    int w = infoIn.width;
+
+    if (infoIn.format == ANDROID_BITMAP_FORMAT_RGBA_8888) {
+        pixels = blur_ARGB_8888((int *) pixels, w, h, r);
+    } else if (infoIn.format == ANDROID_BITMAP_FORMAT_RGB_565) {
+        pixels = blur_RGB_565((short *) pixels, w, h, r);
+    }
+    AndroidBitmap_unlockPixels(env, obj);
 }

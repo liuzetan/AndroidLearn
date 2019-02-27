@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.lzt.blur.BitmapActivity;
+
 public class MainActivity extends AppCompatActivity {
     private Button btnHorizontal;
     private Button btnCustomView;
@@ -14,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnThirdState;
     private Button btnCircleImage;
     private Button btnJni;
+    private Button btnBitmap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +74,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(JniActivity.class);
+            }
+        });
+
+        btnBitmap = findViewById(R.id.btn_bitmap);
+        btnBitmap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(BitmapActivity.class);
             }
         });
     }

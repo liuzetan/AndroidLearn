@@ -25,6 +25,22 @@ JNIEXPORT jint JNICALL Java_com_lzt_JniTest_add
 
 /*
  * Class:     com_lzt_JniTest
+ * Method:    blurPixels
+ * Signature: ([IIII)V
+ */
+JNIEXPORT void JNICALL Java_com_lzt_JniTest_blurPixels
+  (JNIEnv *, jclass, jintArray, jint, jint, jint);
+
+/*
+ * Class:     com_lzt_JniTest
+ * Method:    blurBitmap
+ * Signature: (Landroid/graphics/Bitmap;I)V
+ */
+JNIEXPORT void JNICALL Java_com_lzt_JniTest_blurBitmap
+  (JNIEnv *, jclass, jobject, jint);
+
+/*
+ * Class:     com_lzt_JniTest
  * Method:    minus
  * Signature: ()I
  */

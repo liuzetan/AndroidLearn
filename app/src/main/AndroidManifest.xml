@@ -24,6 +24,7 @@
         <activity android:name=".ThirdStateCheckBoxActivity" />
         <activity android:name=".CircleImageActivity" />
         <activity android:name=".JniActivity"></activity>
+        <activity android:name="com.lzt.blur.BitmapActivity" />
     </application>
 
 </manifest>

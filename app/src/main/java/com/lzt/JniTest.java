@@ -1,5 +1,6 @@
 package com.lzt;
 
+import android.graphics.Bitmap;
 import android.util.Log;
 
 import java.util.Arrays;
@@ -20,6 +21,8 @@ public class JniTest {
 
     public native static String get();
     public native static int add();
+    public static native void blurPixels(int[] img, int w, int h, int r);
+    public static native void blurBitmap(Bitmap bitmap, int r);
     public native static int minus();
 
     public native void test(int n);
