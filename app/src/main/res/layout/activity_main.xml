@@ -9,51 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/ll_container"
         android:orientation="vertical">
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:id="@+id/btn_horizontal"
-            android:text="自定义ViewPager"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:id="@+id/btn_custom"
-            android:text="自定义View"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:id="@+id/btn_nestscroll"
-            android:text="NestedScroll"/>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:id="@+id/btn_formview"
-            android:text="FormView"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:id="@+id/btn_thirdstatecheckbox"
-            android:text="ThirdStateCheckBox"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:id="@+id/btn_circleimage"
-            android:text="圆形图片"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:id="@+id/btn_jni"
-            android:text="进入JNI"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:id="@+id/btn_bitmap"
-            android:text="进入JNI Bitmap"/>
     </LinearLayout>
 </ScrollView>

@@ -1,6 +1,8 @@
 package com.example.testing.androidlearn;
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,111 +12,55 @@ import android.os.Message;
 import android.os.MessageQueue;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ViewUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.lzt.blur.BitmapActivity;
 
 public class MainActivity extends AppCompatActivity {
-    private Button btnHorizontal;
-    private Button btnCustomView;
-    private Button btnNestedScroll;
-    private Button btnFormView;
-    private Button btnThirdState;
-    private Button btnCircleImage;
-    private Button btnJni;
-    private Button btnBitmap;
+    private LinearLayout linearLayout;
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btnHorizontal = findViewById(R.id.btn_horizontal);
-        btnHorizontal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(HorizontalActivity.class);
-            }
-        });
+        linearLayout = findViewById(R.id.ll_container);
 
-        btnCustomView = findViewById(R.id.btn_custom);
-        btnCustomView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(CustomActivity.class);
-            }
-        });
-
-        btnNestedScroll = findViewById(R.id.btn_nestscroll);
-        btnNestedScroll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(NestedScrollActivity.class);
-            }
-        });
-
-        btnFormView = findViewById(R.id.btn_formview);
-        btnFormView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(FormActivity.class);
-            }
-        });
-
-        btnThirdState = findViewById(R.id.btn_thirdstatecheckbox);
-        btnThirdState.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(ThirdStateCheckBoxActivity.class);
-            }
-        });
-
-        btnCircleImage = findViewById(R.id.btn_circleimage);
-        btnCircleImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(CircleImageActivity.class);
-            }
-        });
-
-        btnJni = findViewById(R.id.btn_jni);
-        btnJni.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(JniActivity.class);
-            }
-        });
-
-        btnBitmap = findViewById(R.id.btn_bitmap);
-        btnBitmap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(BitmapActivity.class);
-            }
-        });
-        @SuppressLint("HandlerLeak")
-        Handler handler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-                Log.e("TAGGGG", "handleMessage");
-            }
-        };
-        Message msg = new Message();
-        msg.what = 123;
-//        handler.sendMessage(msg);
-        handler.sendMessageAtFrontOfQueue(msg);
+        addButton("自定义ViewPager", HorizontalActivity.class);
+        addButton("自定义View", CustomActivity.class);
+        addButton("NestedScroll", NestedScrollActivity.class);
+        addButton("FormView", FormActivity.class);
+        addButton("ThirdStateCheckBox", ThirdStateCheckBoxActivity.class);
+        addButton("圆形图片", CircleImageActivity.class);
+        addButton("进入JNI", JniActivity.class);
+        addButton("进入JNI Bitmap", BitmapActivity.class);
+        addButton("Handler Exam", HandlerExamActivity.class);
     }
 
-    @Override
-    protected void onResume() {
-        Log.e("TAGGGG", "onResume");
-        super.onResume();
+    private void addButton(String text, final Class cla) {
+        Button button = new Button(this);
+        button.setText(text);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT,
+                dp2px(this, 40));
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(cla);
+            }
+        });
+        linearLayout.addView(button);
     }
 
     private void startActivity(Class c) {
         Intent intent = new Intent(MainActivity.this, c);
         startActivity(intent);
+    }
+
+    public static int dp2px(Context context, float dipValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dipValue * scale + 0.5f);
     }
 }
