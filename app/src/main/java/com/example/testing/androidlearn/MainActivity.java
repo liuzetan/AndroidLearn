@@ -15,10 +15,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ViewUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.lzt.blur.BitmapActivity;
+
+import io.flutter.facade.Flutter;
 
 public class MainActivity extends AppCompatActivity {
     private LinearLayout linearLayout;
@@ -38,9 +41,18 @@ public class MainActivity extends AppCompatActivity {
         addButton("进入JNI", JniActivity.class);
         addButton("进入JNI Bitmap", BitmapActivity.class);
         addButton("Handler Exam", HandlerExamActivity.class);
+        Button flutterBtn = addButton("Flutter", MainActivity.class);
+        flutterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View view = Flutter.createView(MainActivity.this, getLifecycle(), "/route45");
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(400, 600);
+                linearLayout.addView(view, params);
+            }
+        });
     }
 
-    private void addButton(String text, final Class cla) {
+    private Button addButton(String text, final Class cla) {
         Button button = new Button(this);
         button.setText(text);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT,
@@ -52,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         linearLayout.addView(button);
+        return button;
     }
 
     private void startActivity(Class c) {
