@@ -25,7 +25,10 @@
         <activity android:name=".CircleImageActivity" />
         <activity android:name=".JniActivity" />
         <activity android:name="com.lzt.blur.BitmapActivity" />
-        <activity android:name=".HandlerExamActivity"></activity>
+        <activity android:name=".HandlerExamActivity" />
+        <activity
+            android:name=".MyFlutterActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
     </application>
 
 </manifest>

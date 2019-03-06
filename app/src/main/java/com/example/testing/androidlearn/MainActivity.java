@@ -41,15 +41,8 @@ public class MainActivity extends AppCompatActivity {
         addButton("进入JNI", JniActivity.class);
         addButton("进入JNI Bitmap", BitmapActivity.class);
         addButton("Handler Exam", HandlerExamActivity.class);
-        Button flutterBtn = addButton("Flutter", MainActivity.class);
-        flutterBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                View view = Flutter.createView(MainActivity.this, getLifecycle(), "/route45");
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(400, 600);
-                linearLayout.addView(view, params);
-            }
-        });
+        Button flutterBtn = addButton("Flutter", MyFlutterActivity.class);
+
     }
 
     private Button addButton(String text, final Class cla) {

@@ -51,6 +51,23 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    defaultConfig{
+        ndk {
+            abiFilters "armeabi-v7a", "x86"
+        }
+    }
+    buildTypes {
+        debug {
+            ndk {
+                abiFilters "armeabi-v7a", "x86"
+            }
+        }
+        release {
+            ndk {
+                abiFilters "armeabi-v7a"
+            }
+        }
+    }
 }
 
 dependencies {
