@@ -1,30 +1,11 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
-import 'package:my_flutter/routerManager.dart';
 
-//void main() => runApp(new MyApp());
-void main() => runApp(_widgetForRoute(window.defaultRouteName));
-
-Widget _widgetForRoute(String route) {
-    switch (route) {
-        case 'route1':
-            return new MyApp();
-        case 'route2':
-            return new MyApp();
-        default:
-            return Center(
-                child: Text('Unknown    route1 : $route',
-                        textDirection: TextDirection.ltr),
-            );
-    }
-}
-
-class MyApp extends StatelessWidget {
+class Test extends StatelessWidget {
     // This widget is the root of your application.
-    MyApp() {
-        RouteManager.defineRoutes();
-    }
+    String k1;
+    Test(this.k1);
     @override
     Widget build(BuildContext context) {
         return new MaterialApp(
@@ -32,7 +13,7 @@ class MyApp extends StatelessWidget {
             theme: new ThemeData(
                 primarySwatch: Colors.blue,
             ),
-            home: new MyHomePage(title: 'Flutter Demo Home Page'),
+            home: new MyHomePage(title: 'Flutter Page $k1'),
         );
     }
 }
@@ -52,14 +33,6 @@ class _MyHomePageState extends State<MyHomePage> {
         setState(() {
             _counter++;
         });
-    }
-    
-    void _goNext() {
-        var body = {
-            "k1": 'kkkkkkk',
-            'k2': 'llllllll'
-        };
-        RouteManager.router.navigateTo(context, '/test/$body');
     }
 
     @override
@@ -82,8 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     .textTheme
                                     .display1,
                         ),
-                        new RaisedButton(onPressed: _goNext,
-                        child: new Text("按钮1"),)
+
                     ],
                 ),
             ),
