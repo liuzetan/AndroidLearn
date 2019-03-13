@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
-import 'dart:ui';
 import 'package:flutter/services.dart';
+import 'package:my_flutter/HttpUtil.dart';
 import 'package:my_flutter/routerManager.dart';
 
 
@@ -33,6 +33,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
     int _counter = 0;
+    String ip = "";
     static const platform = const MethodChannel('samples.flutter.io/abc');
 
     void _incrementCounter() async {
@@ -49,8 +50,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
     }
 
+    Future getData() async {
+        var response = await HttpUtil.getInstance().get("", null);
+        setState(() {
+            ip = response['origin'];
+        });
+    }
+
     @override
     Widget build(BuildContext context) {
+        getData();
         return new Scaffold(
             appBar: new AppBar(
                 title: new Text(widget.title),
@@ -63,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             'You have pushed the button this many times:',
                         ),
                         new Text(
-                            '$_counter',
+                            'ip: $ip',
                             style: Theme
                                     .of(context)
                                     .textTheme
