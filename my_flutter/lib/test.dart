@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
+import 'dart:ui';
+import 'package:flutter/services.dart';
 import 'package:my_flutter/routerManager.dart';
 
 
@@ -31,12 +33,20 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
     int _counter = 0;
+    static const platform = const MethodChannel('samples.flutter.io/abc');
 
-    void _incrementCounter() {
+    void _incrementCounter() async {
 //        setState(() {
 //            _counter++;
 //        });
-        RouteManager.router.pop(context);
+
+
+        try {
+            final int result = await platform.invokeMethod('getBatteryLevel');
+        } on PlatformException catch (e) {
+            print("exception $e");
+        }
+
     }
 
     @override

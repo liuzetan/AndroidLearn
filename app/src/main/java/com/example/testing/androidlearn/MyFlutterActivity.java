@@ -34,11 +34,6 @@ public class MyFlutterActivity extends AppCompatActivity {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         linearLayout.addView(flutterView, params);
 
-//        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//        flutterFragment = Flutter.createFragment("route1");
-//        fragmentTransaction.replace(R.id.container, flutterFragment);
-//        fragmentTransaction.commit();
-
         new MethodChannel(flutterView, "samples.flutter.io/abc").setMethodCallHandler(new MethodChannel.MethodCallHandler() {
             @Override
             public void onMethodCall(MethodCall methodCall, MethodChannel.Result result) {
