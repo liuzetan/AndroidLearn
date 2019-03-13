@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dart:ui';
+import 'dart:convert';
 
 
 class Test extends StatelessWidget {
@@ -8,12 +8,14 @@ class Test extends StatelessWidget {
     Test(this.k1);
     @override
     Widget build(BuildContext context) {
+        final parsed = json.decode(k1);
+        final a = parsed['k1'];
         return new MaterialApp(
             title: 'Flutter Demo',
             theme: new ThemeData(
                 primarySwatch: Colors.blue,
             ),
-            home: new MyHomePage(title: 'Flutter Page $k1'),
+            home: new MyHomePage(title: 'Flutter Page $a'),
         );
     }
 }

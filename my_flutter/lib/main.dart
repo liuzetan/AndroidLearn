@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
+import 'package:flutter/services.dart';
 import 'package:my_flutter/routerManager.dart';
 
 //void main() => runApp(new MyApp());
@@ -22,6 +23,7 @@ Widget _widgetForRoute(String route) {
 
 class MyApp extends StatelessWidget {
     // This widget is the root of your application.
+
     MyApp() {
         RouteManager.defineRoutes();
     }
@@ -46,6 +48,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+    static const platform = const MethodChannel('samples.flutter.io/abc');
     int _counter = 0;
 
     void _incrementCounter() {
@@ -54,12 +57,17 @@ class _MyHomePageState extends State<MyHomePage> {
         });
     }
     
-    void _goNext() {
-        var body = {
-            "k1": 'kkkkkkk',
-            'k2': 'llllllll'
-        };
+    void _goNext() async{
+        var body = '{"k1": "kkkkkkk","k2": "llllllll"}';
         RouteManager.router.navigateTo(context, '/test/$body');
+
+//        try {
+//            final int result = await platform.invokeMethod('getBatteryLevel');
+//        } on PlatformException catch (e) {
+//            batteryLevel = "Failed to get battery level: '${e.message}'.";
+//        }
+
+
     }
 
     @override
