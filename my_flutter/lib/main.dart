@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluro/fluro.dart';
 import 'dart:ui';
 
 import 'package:flutter/services.dart';
@@ -59,7 +60,8 @@ class _MyHomePageState extends State<MyHomePage> {
     
     void _goNext() async{
         var body = '{"k1": "kkkkkkk","k2": "llllllll"}';
-        RouteManager.router.navigateTo(context, '/test/$body');
+        RouteManager.router.navigateTo(context, '/test/$body', transition: TransitionType.inFromRight);
+
 
 //        try {
 //            final int result = await platform.invokeMethod('getBatteryLevel');

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
+import 'package:my_flutter/routerManager.dart';
 
 
 class Test extends StatelessWidget {
@@ -32,9 +33,10 @@ class _MyHomePageState extends State<MyHomePage> {
     int _counter = 0;
 
     void _incrementCounter() {
-        setState(() {
-            _counter++;
-        });
+//        setState(() {
+//            _counter++;
+//        });
+        RouteManager.router.pop(context);
     }
 
     @override
