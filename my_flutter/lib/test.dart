@@ -1,14 +1,22 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:my_flutter/HttpUtil.dart';
+import 'package:my_flutter/page/AddPage.dart';
+import 'package:my_flutter/page/HomePage.dart';
+import 'package:my_flutter/page/ListPage.dart';
+import 'package:my_flutter/page/MessagePage.dart';
 import 'package:my_flutter/routerManager.dart';
 
 
 class Test extends StatelessWidget {
     // This widget is the root of your application.
     String k1;
+
     Test(this.k1);
+
     @override
     Widget build(BuildContext context) {
         final parsed = json.decode(k1);
@@ -36,18 +44,17 @@ class _MyHomePageState extends State<MyHomePage> {
     String ip = "";
     static const platform = const MethodChannel('samples.flutter.io/abc');
 
+    var _curIndex = 0;
+    var _texts = ["Home", "List", "Message", "Add"];
+    var _icons = [Icons.home, Icons.list, Icons.message, Icons.add];
+    var _bodys = [new HomePage(), new ListPage(), new MessagePage(), new AddPage()];
+
     void _incrementCounter() async {
-//        setState(() {
-//            _counter++;
-//        });
-
-
         try {
             final int result = await platform.invokeMethod('getBatteryLevel');
         } on PlatformException catch (e) {
             print("exception $e");
         }
-
     }
 
     Future getData() async {
@@ -57,36 +64,34 @@ class _MyHomePageState extends State<MyHomePage> {
         });
     }
 
+    void _onItemTapped(int index) {
+        if (mounted) {
+            setState(() {
+                _curIndex = index;
+            });
+        }
+    }
+
     @override
     Widget build(BuildContext context) {
-        getData();
+//        getData();
         return new Scaffold(
             appBar: new AppBar(
                 title: new Text(widget.title),
             ),
-            body: new Center(
-                child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                        new Text(
-                            'You have pushed the button this many times:',
-                        ),
-                        new Text(
-                            'ip: $ip',
-                            style: Theme
-                                    .of(context)
-                                    .textTheme
-                                    .display1,
-                        ),
-
-                    ],
-                ),
-            ),
-            floatingActionButton: new FloatingActionButton(
-                onPressed: _incrementCounter,
-                tooltip: 'Increment',
-                child: new Icon(Icons.add),
-            ), // This trailing comma makes auto-formatting nicer for build methods.
+            body: _bodys[_curIndex],
+            bottomNavigationBar: new BottomNavigationBar(
+                    type: BottomNavigationBarType.fixed,
+                    iconSize: 24.0,
+                    currentIndex: _curIndex,
+                    onTap: _onItemTapped,
+                    fixedColor: Colors.red,
+                    items: <BottomNavigationBarItem>[
+                        BottomNavigationBarItem(title: Text(_texts[0]), icon: Icon(_icons[0])),
+                        BottomNavigationBarItem(title: Text(_texts[1]), icon: Icon(_icons[1])),
+                        BottomNavigationBarItem(title: Text(_texts[2]), icon: Icon(_icons[2])),
+                        BottomNavigationBarItem(title: Text(_texts[3]), icon: Icon(_icons[3])),
+                    ]),// This trailing comma makes auto-formatting nicer for build methods.
         );
     }
 }
