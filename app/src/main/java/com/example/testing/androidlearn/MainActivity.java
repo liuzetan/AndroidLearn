@@ -41,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
         addButton("进入JNI", JniActivity.class);
         addButton("进入JNI Bitmap", BitmapActivity.class);
         addButton("Handler Exam", HandlerExamActivity.class);
-        Button flutterBtn = addButton("Flutter", MyFlutterActivity.class);
-
+        addButton("Flutter", MyFlutterActivity.class);
+        addButton("Dependence Injection", DIActivity.class);
     }
 
     private Button addButton(String text, final Class cla) {
