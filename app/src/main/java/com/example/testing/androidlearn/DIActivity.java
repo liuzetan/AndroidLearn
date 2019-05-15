@@ -16,7 +16,6 @@ public class DIActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_di);
         InjectManager.inject(this);
         tv.setText("depend injector");
     }

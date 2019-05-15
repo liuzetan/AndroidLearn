@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         linearLayout = findViewById(R.id.ll_container);
 
+        addButton("kotlin", KotActivity.class);
         addButton("自定义ViewPager", HorizontalActivity.class);
         addButton("自定义View", CustomActivity.class);
         addButton("NestedScroll", NestedScrollActivity.class);

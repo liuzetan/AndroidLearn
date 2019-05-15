@@ -17,6 +17,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".KotActivity"/>
         <activity android:name=".CustomActivity"/>
         <activity android:name=".HorizontalActivity"/>
         <activity android:name=".NestedScrollActivity"/>
@@ -30,6 +31,8 @@
                 android:name=".MyFlutterActivity"
                 android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity android:name=".DIActivity">
+        </activity>
+        <activity android:name="com.kotlin.KotlinActivity">
         </activity>
     </application>
 
