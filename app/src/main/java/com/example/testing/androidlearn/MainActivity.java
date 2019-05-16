@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.kotlin.KotlinActivity;
 import com.lzt.blur.BitmapActivity;
 
 import io.flutter.facade.Flutter;
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         linearLayout = findViewById(R.id.ll_container);
 
-        addButton("kotlin", KotActivity.class);
+        addButton("kotlin", KotlinActivity.class);
         addButton("自定义ViewPager", HorizontalActivity.class);
         addButton("自定义View", CustomActivity.class);
         addButton("NestedScroll", NestedScrollActivity.class);
