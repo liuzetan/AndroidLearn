@@ -16,9 +16,14 @@ class KotlinActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kot)
         btn.setOnClickListener {
-            Log.e("System.out", "click")
-            hello(tv)
-            Log.e("System.out", "is after")
+//            Log.e("System.out", "click")
+//            hello(tv)
+//            Log.e("System.out", "is after")
+//
+//            var exam = Exam("abc")
+
+            var p = ExtendPerson("abcdefg")
+            p.hello()
         }
     }
 
