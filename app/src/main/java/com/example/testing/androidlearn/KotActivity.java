@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class KotActivity extends AppCompatActivity {
 
     @Override
@@ -20,6 +22,13 @@ public class KotActivity extends AppCompatActivity {
             public void onClick(View v) {
             }
         });
+
+    }
+
+    public <T> void test() {
+        ArrayList<? super Number> l = new ArrayList<>();
+        l = new ArrayList<Object>();
+        l.add(4.5f);
 
     }
 }

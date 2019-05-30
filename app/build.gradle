@@ -83,6 +83,7 @@ dependencies {
     implementation project(":flutter")
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.2.1"
 }
 repositories {
     mavenCentral()
