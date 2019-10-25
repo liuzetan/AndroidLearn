@@ -4,6 +4,9 @@ import android.provider.Settings
 import kotlinx.coroutines.*
 
 open class Coroutines : CoroutineScope by MainScope(){
+    companion object abc {
+        var a:Int = 5
+    }
     fun test() = launch {
         var a = async {
             println("launch start")

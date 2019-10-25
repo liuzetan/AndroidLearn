@@ -43,7 +43,7 @@ class KotlinActivity : AppCompatActivity(), CoroutineScope by MainScope() {
 //
 //                setText(response)
 //            }
-
+            Coroutines.a = 10
             click()
         }
     }
