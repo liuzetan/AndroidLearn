@@ -1,0 +1,91 @@
+defaultTasks 'hello'
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+
+task upper << {
+    String str = 'my_nAmE'
+    println('Original: ' + str)
+    println('Upper case: ' + str.toUpperCase())
+}
+
+task count << {
+    4.times {
+        print("$it ")
+    }
+}
+
+task behind(dependsOn: 'hello') << {
+    println("behind it")
+}
+task hello << {
+    println 'Hello world!'
+}
+
+hello.doFirst {
+    println 'First'
+}
+
+//<<操作符是doLast的简单别称
+hello << {
+    println " $hello.name other last"
+}
+
+hello.doLast {
+    println "$hello last"
+}
+
+4.times { counter ->
+    task "task$counter" << {
+        println "I'm task number $counter"
+    }
+}
+
+task3.dependsOn task1, task2, task0
+
+task myTask << {
+    ext.pro = "myValue"
+}
+task printmyTask << {
+    println("abc" + myTask.pro)
+}
+
+task loadfile << {
+    def files = file('plugin/').listFiles()
+    println("$files.length")
+    files.each { File file ->
+        if (file.isFile()) {
+            ant.loadfile(srcFile: file, property: file.name)
+            println "*** $file.name ***"
+        }
+    }
+}
+
+task checksum << {
+    fileList('plugin').each { File file ->
+        if (file.isFile()) {
+            ant.checksum(file: file, property: "cs_$file.name")
+            println("$file.name Checksum: ${ant.properties["cs_$file.name"]}")
+        }
+    }
+}
+
+File[] fileList(String dir) {
+    file(dir).listFiles({file -> file.isFile()} as FileFilter).sort()
+}
+
+task distribution << {
+    println("We build the zip with version=$version")
+}
+task release(dependsOn: distribution) << {
+    println("We release now")
+}
+gradle.taskGraph.whenReady {taskGraph ->
+    if (taskGraph.hasTask(release)) {
+        version = '1.0'
+    } else {
+        version = '1.0-SNAPSHOT'
+    }
+}

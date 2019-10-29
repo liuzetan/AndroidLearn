@@ -2,11 +2,11 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-apply plugin: 'com.lzt.bytecode.fix'
-lintCleaner {
-    lintXmlPath "${buildDir}/reports/lint-results.xml"
-    outputPath "${buildDir}/reports/lintCleanerLog.txt"
-}
+//apply plugin: 'com.lzt.bytecode.fix'
+//lintCleaner {
+//    lintXmlPath "${buildDir}/reports/lint-results.xml"
+//    outputPath "${buildDir}/reports/lintCleanerLog.txt"
+//}
 
 android {
     compileSdkVersion 27
