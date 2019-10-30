@@ -12,6 +12,7 @@ dependencies {
     compile localGroovy()
 
     compile 'com.android.tools.build:gradle:2.3.3'
+    implementation 'org.javassist:javassist:3.23.1-GA'
 }
 
 group = 'com.lzt.bytecode.fix'

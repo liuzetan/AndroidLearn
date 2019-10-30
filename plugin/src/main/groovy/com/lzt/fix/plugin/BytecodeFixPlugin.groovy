@@ -11,7 +11,7 @@ public class BytecodeFixPlugin implements Plugin<Project> {
 
     @Override
     void apply(Project project) {
-        println("This is a gradle plugin, (*^__^*)")
+        println("This is a gradle plugin, (*^__^*)， name = ${project.name}")
 // 获取外部参数
         project.extensions.create(EXTENSION_NAME, PluginExtension, project)
 

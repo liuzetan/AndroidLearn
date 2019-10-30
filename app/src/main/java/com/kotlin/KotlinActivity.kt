@@ -59,23 +59,23 @@ class KotlinActivity : AppCompatActivity(), CoroutineScope by MainScope() {
         }
     }
 
-    suspend fun getToken(): String {
-        Log.d("AA", "getToken start，线程：${Thread.currentThread().name}")
-        delay(100)
-        Log.d("AA", "getToken end，线程：${Thread.currentThread().name}")
-        return "ask"
-    }
-
-    suspend fun getResponse(token: String): String {
-        Log.d("AA", "getResponse start，线程：${Thread.currentThread().name}")
-        delay(200)
-        Log.d("AA", "getResponse end，线程：${Thread.currentThread().name}")
-        return "response"
-    }
-
-    fun setText(response: String) {
-        Log.d("AA", "setText 执行，线程：${Thread.currentThread().name}")
-    }
+//    suspend fun getToken(): String {
+//        Log.d("AA", "getToken start，线程：${Thread.currentThread().name}")
+//        delay(100)
+//        Log.d("AA", "getToken end，线程：${Thread.currentThread().name}")
+//        return "ask"
+//    }
+//
+//    suspend fun getResponse(token: String): String {
+//        Log.d("AA", "getResponse start，线程：${Thread.currentThread().name}")
+//        delay(200)
+//        Log.d("AA", "getResponse end，线程：${Thread.currentThread().name}")
+//        return "response"
+//    }
+//
+//    fun setText(response: String) {
+//        Log.d("AA", "setText 执行，线程：${Thread.currentThread().name}")
+//    }
 
 
 
