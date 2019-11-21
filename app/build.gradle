@@ -61,23 +61,23 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     buildToolsVersion = '28.0.3'
-    defaultConfig {
-        ndk {
-            abiFilters "armeabi-v7a", "x86"
-        }
-    }
-    buildTypes {
-        debug {
-            ndk {
-                abiFilters "armeabi-v7a", "x86"
-            }
-        }
-        release {
-            ndk {
-                abiFilters "armeabi-v7a"
-            }
-        }
-    }
+//    defaultConfig {
+//        ndk {
+//            abiFilters "armeabi"
+//        }
+//    }
+//    buildTypes {
+//        debug {
+//            ndk {
+//                abiFilters "armeabi"
+//            }
+//        }
+//        release {
+//            ndk {
+//                abiFilters "armeabi"
+//            }
+//        }
+//    }
 }
 
 dependencies {

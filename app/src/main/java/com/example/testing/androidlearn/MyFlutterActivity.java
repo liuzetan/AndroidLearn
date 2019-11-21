@@ -37,7 +37,11 @@ public class MyFlutterActivity extends AppCompatActivity {
         new MethodChannel(flutterView, "samples.flutter.io/abc").setMethodCallHandler(new MethodChannel.MethodCallHandler() {
             @Override
             public void onMethodCall(MethodCall methodCall, MethodChannel.Result result) {
-                startActivity(new Intent(MyFlutterActivity.this, MainActivity.class));
+                if (methodCall.method.equals("getRandom")) {
+                    result.success((int)(100 * Math.random()));
+                } else {
+                    startActivity(new Intent(MyFlutterActivity.this, MainActivity.class));
+                }
             }
         });
 

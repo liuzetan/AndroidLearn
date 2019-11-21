@@ -61,6 +61,17 @@ class _MyHomePageState extends State<MyHomePage> {
     void _goNext() async{
         var body = '{"k1": "kkkkkkk","k2": "llllllll"}';
         RouteManager.router.navigateTo(context, '/test/$body', transition: TransitionType.inFromRight);
+    
+//        String batteryLevel;
+//        try {
+//            final int result = await platform.invokeMethod('getRandom');
+//            setState(() {
+//              _counter = result;
+//            });
+//            batteryLevel = 'Battery level at $result % .';
+//        } on PlatformException catch (e) {
+//            batteryLevel = "Failed to get battery level: '${e.message}'.";
+//        }
     }
 
     @override
