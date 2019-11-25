@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:fluro/fluro.dart';
 import 'dart:ui';
@@ -51,6 +53,50 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
     static const platform = const MethodChannel('samples.flutter.io/abc');
     int _counter = 0;
+    
+    static const eventPlugin = const EventChannel("com.xxx");
+    static const BasicMessageChannel<String> basicMessageChannel = const BasicMessageChannel("CHANNEL", StringCodec());
+    StreamSubscription _streamSubscription;
+    @override
+    void initState() {
+        super.initState();
+        platform.setMethodCallHandler(platformCallHandler);
+        _streamSubscription = eventPlugin.receiveBroadcastStream().listen(_onData, onError: _onError, cancelOnError: true);
+        basicMessageChannel.setMessageHandler(_handleBasic);
+    }
+
+    Future<dynamic> platformCallHandler(MethodCall call) async {
+        switch (call.method) {
+            case "getInputParams":
+                return "arguments";
+            default:
+                return "ddddffffaaauuulllttt";
+        }
+    }
+
+    Future<String> _handleBasic(String message) async {
+        print("_handleBasic message = " + message);
+        // 发送一个空消息
+        return "_emptyMessage";
+    }
+
+
+    void _onData(event) {
+        print("onData event = " + event);
+    }
+
+
+    void _onError(event) {
+        print("onError event = " + event);
+    }
+
+    @override
+    void dispose() {
+        super.dispose();
+        if(_streamSubscription != null) {
+            _streamSubscription.cancel();
+        }
+    }
 
     void _incrementCounter() {
         setState(() {
@@ -59,19 +105,20 @@ class _MyHomePageState extends State<MyHomePage> {
     }
     
     void _goNext() async{
-        var body = '{"k1": "kkkkkkk","k2": "llllllll"}';
-        RouteManager.router.navigateTo(context, '/test/$body', transition: TransitionType.inFromRight);
+//        var body = '{"k1": "kkkkkkk","k2": "llllllll"}';
+//        RouteManager.router.navigateTo(context, '/test/$body', transition: TransitionType.inFromRight);
     
-//        String batteryLevel;
-//        try {
-//            final int result = await platform.invokeMethod('getRandom');
-//            setState(() {
-//              _counter = result;
-//            });
-//            batteryLevel = 'Battery level at $result % .';
-//        } on PlatformException catch (e) {
-//            batteryLevel = "Failed to get battery level: '${e.message}'.";
-//        }
+        String batteryLevel;
+        try {
+            final int result = await platform.invokeMethod('getRandom');
+            setState(() {
+              _counter = result;
+            });
+            batteryLevel = 'Battery level at $result % .';
+        } on PlatformException catch (e) {
+            batteryLevel = "Failed to get battery level: '${e.message}'.";
+        }
+        basicMessageChannel.send("what is it");
     }
 
     @override
@@ -106,4 +153,5 @@ class _MyHomePageState extends State<MyHomePage> {
             ), // This trailing comma makes auto-formatting nicer for build methods.
         );
     }
+
 }
