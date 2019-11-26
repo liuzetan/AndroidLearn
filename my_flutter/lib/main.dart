@@ -54,14 +54,14 @@ class _MyHomePageState extends State<MyHomePage> {
     static const platform = const MethodChannel('samples.flutter.io/abc');
     int _counter = 0;
     
-    static const eventPlugin = const EventChannel("com.xxx");
+//    static const eventPlugin = const EventChannel("com.xxx");
     static const BasicMessageChannel<String> basicMessageChannel = const BasicMessageChannel("CHANNEL", StringCodec());
     StreamSubscription _streamSubscription;
     @override
     void initState() {
         super.initState();
         platform.setMethodCallHandler(platformCallHandler);
-        _streamSubscription = eventPlugin.receiveBroadcastStream().listen(_onData, onError: _onError, cancelOnError: true);
+//        _streamSubscription = eventPlugin.receiveBroadcastStream().listen(_onData, onError: _onError, cancelOnError: true);
         basicMessageChannel.setMessageHandler(_handleBasic);
     }
 
@@ -81,14 +81,14 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
 
-    void _onData(event) {
-        print("onData event = " + event);
-    }
-
-
-    void _onError(event) {
-        print("onError event = " + event);
-    }
+//    void _onData(event) {
+//        print("onData event = " + event);
+//    }
+//
+//
+//    void _onError(event) {
+//        print("onError event = " + event);
+//    }
 
     @override
     void dispose() {

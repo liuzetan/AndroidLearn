@@ -54,8 +54,30 @@ public class MyFlutterActivity extends AppCompatActivity {
             }
         });
 
+//        new EventChannel(flutterView, "com.xxx").setStreamHandler(new EventChannel.StreamHandler() {
+//            @Override
+//            public void onListen(Object o, EventChannel.EventSink eventSink) {
+//                eventSink.success("msg success");
+//            }
+//
+//            @Override
+//            public void onCancel(Object o) {
+//
+//            }
+//        });
+
+
         TextView tv = findViewById(R.id.tv);
         Button btn = findViewById(R.id.btn);
+        BasicMessageChannel messageChannel = new BasicMessageChannel(flutterView, "CHANNEL", StringCodec.INSTANCE);
+        messageChannel.setMessageHandler(new BasicMessageChannel.MessageHandler() {
+            @Override
+            public void onMessage(@Nullable Object o, @NonNull BasicMessageChannel.Reply reply) {
+                tv.setText(o.toString());
+                reply.reply("get it!!!");
+            }
+        });
+
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,29 +98,11 @@ public class MyFlutterActivity extends AppCompatActivity {
 
                     }
                 });
+
+                messageChannel.send("Native to Flutter");
             }
         });
 
-        new EventChannel(flutterView, "com.xxx").setStreamHandler(new EventChannel.StreamHandler() {
-            @Override
-            public void onListen(Object o, EventChannel.EventSink eventSink) {
-                eventSink.success("msg success");
-            }
-
-            @Override
-            public void onCancel(Object o) {
-
-            }
-        });
-
-        BasicMessageChannel messageChannel = new BasicMessageChannel(flutterView, "CHANNEL", StringCodec.INSTANCE);
-        messageChannel.setMessageHandler(new BasicMessageChannel.MessageHandler() {
-            @Override
-            public void onMessage(@Nullable Object o, @NonNull BasicMessageChannel.Reply reply) {
-                tv.setText(o.toString());
-                reply.reply("get it!!!");
-            }
-        });
     }
 
     @Override
