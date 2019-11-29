@@ -72,7 +72,7 @@ class LifeCycleTransform extends Transform {
                     jarName = jarName.substring(0, jarName.length() - 4)
                 }
                 def dest = outputProvider.getContentLocation(jarName + md5Name, jarInput.contentTypes, jarInput.scopes, Format.JAR)
-                println("jar " + jarInput.file + " transform " + dest)
+//                println("jar " + jarInput.file + " transform " + dest)
                 FileUtils.copyFile(jarInput.file, dest)
             }
         }
@@ -83,21 +83,23 @@ class LifeCycleTransform extends Transform {
     void injectCode(String path, Project project) {
         pool.appendClassPath(path)
         pool.appendClassPath(project.android.bootClasspath[0].toString())
-        pool.importPackage("android.os.Bundle")
+        println("path = " + path)
+        println("project.android.bootClasspath[0].toString() = " + project.android.bootClasspath[0].toString())
+//        pool.importPackage("android.os.Bundle")
 
         File dir = new File(path)
 
         if (dir.isDirectory()) {
             dir.eachFileRecurse {File file ->
                 String filePath = file.absolutePath
-                println("filePath = ${filePath}")
+//                println("filePath = ${filePath}")
                 if ("MainActivity.class".equals(file.getName())) {
                     CtClass ctClass = pool.getCtClass("com.example.testing.androidlearn.MainActivity")
                     println("ctClass = ${ctClass}")
                     if (ctClass.isFrozen())
                         ctClass.defrost()
                     CtMethod ctMethod = ctClass.getDeclaredMethod("onCreate")
-                    String insetBeforeStr = """ android.widget.Toast.makeText(this,"我是被插入的Toast代码~!!",android.widget.Toast.LENGTH_SHORT).show();
+                    String insetBeforeStr = """ android.widget.Toast.makeText(this,"abc 我是被插入的Toast代码~!!",android.widget.Toast.LENGTH_SHORT).show();
                            """
                     ctMethod.insertBefore(insetBeforeStr)
                     ctClass.writeFile(path)
