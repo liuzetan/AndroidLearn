@@ -42,6 +42,8 @@ public class MyFlutterActivity extends AppCompatActivity {
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         linearLayout.addView(flutterView, params);
 
+        NativeViewFactory.registerWith(flutterView.getPluginRegistry());
+
         MethodChannel methodChannel = new MethodChannel(flutterView, "samples.flutter.io/abc");
         methodChannel.setMethodCallHandler(new MethodChannel.MethodCallHandler() {
             @Override

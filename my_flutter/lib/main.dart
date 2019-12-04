@@ -131,6 +131,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: new Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
+                        Container(
+                        child: AndroidView(viewType: "nativeTestView", creationParamsCodec: const StandardMessageCodec(),
+                        creationParams: {'method_layout_size': 70},),
+                            color: Colors.blue, height: 40,
+                        ),
                         new Text(
                             'You have pushed the button this many times:',
                         ),
