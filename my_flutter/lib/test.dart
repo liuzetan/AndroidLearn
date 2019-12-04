@@ -13,13 +13,13 @@ import 'package:my_flutter/routerManager.dart';
 
 class Test extends StatelessWidget {
     // This widget is the root of your application.
-    String k1;
+    String k;
 
-    Test(this.k1);
+    Test(this.k);
 
     @override
     Widget build(BuildContext context) {
-        final parsed = json.decode(k1);
+        final parsed = json.decode(k);
         final a = parsed['k1'];
         return new MaterialApp(
             title: 'Flutter Demo',

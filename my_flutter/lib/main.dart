@@ -5,7 +5,9 @@ import 'package:fluro/fluro.dart';
 import 'dart:ui';
 
 import 'package:flutter/services.dart';
+import 'package:my_flutter/page/HomePage.dart';
 import 'package:my_flutter/routerManager.dart';
+import 'package:my_flutter/test.dart';
 
 //void main() => runApp(new MyApp());
 void main() => runApp(_widgetForRoute(window.defaultRouteName));
@@ -15,7 +17,7 @@ Widget _widgetForRoute(String route) {
         case 'route1':
             return new MyApp();
         case 'route2':
-            return new MyApp();
+            return new Test('{"k1": "kkkkkkk","k2": "llllllll"}');
         default:
             return Center(
                 child: Text('Unknown    route1 : $route',

@@ -38,7 +38,7 @@ public class MyFlutterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flutter);
         FrameLayout linearLayout = findViewById(R.id.fl);
-        flutterView = Flutter.createView(this, getLifecycle(), "route1");
+        flutterView = Flutter.createView(this, getLifecycle(), "route2");
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         linearLayout.addView(flutterView, params);
 
