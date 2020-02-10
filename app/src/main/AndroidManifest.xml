@@ -30,6 +30,9 @@
         <activity
                 android:name=".MyFlutterActivity"
                 android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity
+            android:name=".MyFlutter2Activity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity android:name=".DIActivity">
         </activity>
         <activity android:name="com.kotlin.KotlinActivity">

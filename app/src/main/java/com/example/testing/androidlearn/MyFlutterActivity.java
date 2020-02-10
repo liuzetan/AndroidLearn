@@ -84,24 +84,26 @@ public class MyFlutterActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                methodChannel.invokeMethod("getInputParams", "{'arg1':'来自Native'}", new MethodChannel.Result() {
-                    @Override
-                    public void success(@Nullable Object o) {
-                        tv.setText(o.toString());
-                    }
+//                methodChannel.invokeMethod("getInputParams", "{'arg1':'来自Native'}", new MethodChannel.Result() {
+//                    @Override
+//                    public void success(@Nullable Object o) {
+//                        tv.setText(o.toString());
+//                    }
+//
+//                    @Override
+//                    public void error(String s, @Nullable String s1, @Nullable Object o) {
+//
+//                    }
+//
+//                    @Override
+//                    public void notImplemented() {
+//
+//                    }
+//                });
+//
+//                messageChannel.send("Native to Flutter");
 
-                    @Override
-                    public void error(String s, @Nullable String s1, @Nullable Object o) {
-
-                    }
-
-                    @Override
-                    public void notImplemented() {
-
-                    }
-                });
-
-                messageChannel.send("Native to Flutter");
+                startActivity(new Intent(MyFlutterActivity.this, MyFlutter2Activity.class));
             }
         });
 
