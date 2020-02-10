@@ -1,0 +1,47 @@
+
+{
+	"buildFiles" : 
+	[
+		"/Users/a1/Downloads/code/LearnFlutter/AndroidLearn/app/CMakeLists.txt"
+	],
+	"cFileExtensions" : [ "c" ],
+	"cleanCommands" : 
+	[
+		"/Users/a1/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/a1/Downloads/code/LearnFlutter/AndroidLearn/app/.cxx/cmake/debug/arm64-v8a --target clean"
+	],
+	"libraries" : 
+	{
+		"JniTest-Debug-arm64-v8a" : 
+		{
+			"abi" : "arm64-v8a",
+			"artifactName" : "JniTest",
+			"buildCommand" : "/Users/a1/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/a1/Downloads/code/LearnFlutter/AndroidLearn/app/.cxx/cmake/debug/arm64-v8a --target JniTest",
+			"buildType" : "debug",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/a1/Android/sdk/ndk-bundle/toolchains/aarch64-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/a1/Android/sdk/ndk-bundle/sysroot -DJniTest_EXPORTS  -isystem /Users/a1/Android/sdk/ndk-bundle/sysroot/usr/include/aarch64-linux-android -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC      -c ",
+					"src" : "/Users/a1/Downloads/code/LearnFlutter/AndroidLearn/app/src/main/jni/test.c",
+					"workingDirectory" : "/Users/a1/Downloads/code/LearnFlutter/AndroidLearn/app/.cxx/cmake/debug/arm64-v8a"
+				},
+				
+				{
+					"flags" : "  --target=aarch64-none-linux-android21 --gcc-toolchain=/Users/a1/Android/sdk/ndk-bundle/toolchains/aarch64-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/a1/Android/sdk/ndk-bundle/sysroot -DJniTest_EXPORTS  -isystem /Users/a1/Android/sdk/ndk-bundle/sysroot/usr/include/aarch64-linux-android -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC      -c ",
+					"src" : "/Users/a1/Downloads/code/LearnFlutter/AndroidLearn/app/src/main/jni/blur.c",
+					"workingDirectory" : "/Users/a1/Downloads/code/LearnFlutter/AndroidLearn/app/.cxx/cmake/debug/arm64-v8a"
+				}
+			],
+			"output" : "/Users/a1/Downloads/code/LearnFlutter/AndroidLearn/app/build/intermediates/cmake/debug/obj/arm64-v8a/libJniTest.so",
+			"toolchain" : "2914729920708175390"
+		}
+	},
+	"toolchains" : 
+	{
+		"2914729920708175390" : 
+		{
+			"cCompilerExecutable" : "/Users/a1/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang",
+			"cppCompilerExecutable" : "/Users/a1/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++"
+		}
+	}
+}

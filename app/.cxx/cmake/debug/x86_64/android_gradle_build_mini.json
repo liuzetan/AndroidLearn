@@ -1,0 +1,16 @@
+{
+  "buildFiles": [
+    "/Users/a1/Downloads/code/LearnFlutter/AndroidLearn/app/CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "/Users/a1/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/a1/Downloads/code/LearnFlutter/AndroidLearn/app/.cxx/cmake/debug/x86_64 --target clean"
+  ],
+  "libraries": {
+    "JniTest-Debug-x86_64": {
+      "artifactName": "JniTest",
+      "buildCommand": "/Users/a1/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/a1/Downloads/code/LearnFlutter/AndroidLearn/app/.cxx/cmake/debug/x86_64 --target JniTest",
+      "abi": "x86_64",
+      "output": "/Users/a1/Downloads/code/LearnFlutter/AndroidLearn/app/build/intermediates/cmake/debug/obj/x86_64/libJniTest.so"
+    }
+  }
+}

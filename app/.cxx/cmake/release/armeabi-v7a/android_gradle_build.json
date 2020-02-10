@@ -1,0 +1,47 @@
+
+{
+	"buildFiles" : 
+	[
+		"/Users/a1/Downloads/code/LearnFlutter/AndroidLearn/app/CMakeLists.txt"
+	],
+	"cFileExtensions" : [ "c" ],
+	"cleanCommands" : 
+	[
+		"/Users/a1/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/a1/Downloads/code/LearnFlutter/AndroidLearn/app/.cxx/cmake/release/armeabi-v7a --target clean"
+	],
+	"libraries" : 
+	{
+		"JniTest-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "JniTest",
+			"buildCommand" : "/Users/a1/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/a1/Downloads/code/LearnFlutter/AndroidLearn/app/.cxx/cmake/release/armeabi-v7a --target JniTest",
+			"buildType" : "release",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi16 --gcc-toolchain=/Users/a1/Android/sdk/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/a1/Android/sdk/ndk-bundle/sysroot -DJniTest_EXPORTS  -isystem /Users/a1/Android/sdk/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -Oz -DNDEBUG  -fPIC      -c ",
+					"src" : "/Users/a1/Downloads/code/LearnFlutter/AndroidLearn/app/src/main/jni/test.c",
+					"workingDirectory" : "/Users/a1/Downloads/code/LearnFlutter/AndroidLearn/app/.cxx/cmake/release/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi16 --gcc-toolchain=/Users/a1/Android/sdk/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/a1/Android/sdk/ndk-bundle/sysroot -DJniTest_EXPORTS  -isystem /Users/a1/Android/sdk/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -Oz -DNDEBUG  -fPIC      -c ",
+					"src" : "/Users/a1/Downloads/code/LearnFlutter/AndroidLearn/app/src/main/jni/blur.c",
+					"workingDirectory" : "/Users/a1/Downloads/code/LearnFlutter/AndroidLearn/app/.cxx/cmake/release/armeabi-v7a"
+				}
+			],
+			"output" : "/Users/a1/Downloads/code/LearnFlutter/AndroidLearn/app/build/intermediates/cmake/release/obj/armeabi-v7a/libJniTest.so",
+			"toolchain" : "2914729920708175390"
+		}
+	},
+	"toolchains" : 
+	{
+		"2914729920708175390" : 
+		{
+			"cCompilerExecutable" : "/Users/a1/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang",
+			"cppCompilerExecutable" : "/Users/a1/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++"
+		}
+	}
+}

@@ -1,0 +1,14 @@
+Executable : /Users/a1/Android/sdk/cmake/3.6.4111459/bin/cmake
+arguments : 
+-H/Users/a1/Downloads/code/LearnFlutter/AndroidLearn/app
+-B/Users/a1/Downloads/code/LearnFlutter/AndroidLearn/app/.cxx/cmake/release/x86
+-DANDROID_ABI=x86
+-DANDROID_PLATFORM=android-16
+-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=/Users/a1/Downloads/code/LearnFlutter/AndroidLearn/app/build/intermediates/cmake/release/obj/x86
+-DCMAKE_BUILD_TYPE=Release
+-DANDROID_NDK=/Users/a1/Android/sdk/ndk-bundle
+-DCMAKE_TOOLCHAIN_FILE=/Users/a1/Android/sdk/ndk-bundle/build/cmake/android.toolchain.cmake
+-DCMAKE_MAKE_PROGRAM=/Users/a1/Android/sdk/cmake/3.6.4111459/bin/ninja
+-GAndroid Gradle - Ninja
+jvmArgs : 
+

@@ -1,0 +1,3 @@
+/Users/a1/Downloads/code/LearnFlutter/AndroidLearn/app/.cxx/cmake/release/x86_64/CMakeFiles/edit_cache.dir
+/Users/a1/Downloads/code/LearnFlutter/AndroidLearn/app/.cxx/cmake/release/x86_64/CMakeFiles/rebuild_cache.dir
+/Users/a1/Downloads/code/LearnFlutter/AndroidLearn/app/.cxx/cmake/release/x86_64/CMakeFiles/JniTest.dir
