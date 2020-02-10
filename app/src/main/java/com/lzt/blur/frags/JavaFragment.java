@@ -2,10 +2,10 @@ package com.lzt.blur.frags;
 
 
 import android.graphics.Bitmap;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 import com.lzt.BlurImage;
-import com.lzt.JniTest;
+//import com.lzt.JniTest;
 
 /**
  * A simple {@link Fragment} subclass.

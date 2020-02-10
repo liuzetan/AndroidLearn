@@ -1,7 +1,7 @@
 package com.example.testing.androidlearn;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.lzt.form.Column;
 import com.lzt.form.FormData;

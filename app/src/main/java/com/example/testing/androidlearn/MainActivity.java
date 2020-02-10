@@ -1,28 +1,21 @@
 package com.example.testing.androidlearn;
 
-import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-import android.os.MessageQueue;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.ViewUtils;
-import android.util.Log;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.ViewUtils;
+
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.kotlin.KotlinActivity;
 import com.lzt.blur.BitmapActivity;
-
-import io.flutter.facade.Flutter;
 
 public class MainActivity extends AppCompatActivity {
     private LinearLayout linearLayout;

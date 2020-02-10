@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 apply from: 'exam.gradle'
 buildscript {
-    ext.kotlin_version = '1.3.10'
+    ext.kotlin_version = '1.3.31'
     repositories {
         maven { url 'http://nexus-hqtn.hecom.cn/repository/android-public/' }
         maven { url 'http://nexus-hqtn.hecom.cn/repository/maven-public/' }
@@ -12,7 +12,7 @@ buildscript {
 
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.2'
+        classpath 'com.android.tools.build:gradle:3.4.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.lzt.bytecode.fix:plugin:1.0.0'
 

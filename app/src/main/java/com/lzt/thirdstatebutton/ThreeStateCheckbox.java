@@ -2,8 +2,8 @@ package com.lzt.thirdstatebutton;
 
 import android.content.Context;
 import android.os.Parcelable;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.AppCompatCheckBox;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatCheckBox;
 import android.util.AttributeSet;
 
 import com.example.testing.androidlearn.R;

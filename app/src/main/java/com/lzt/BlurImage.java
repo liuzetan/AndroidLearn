@@ -2,8 +2,8 @@ package com.lzt;
 
 import android.graphics.Bitmap;
 
-import static com.lzt.JniTest.blurBitmap;
-import static com.lzt.JniTest.blurPixels;
+//import static com.lzt.JniTest.blurBitmap;
+//import static com.lzt.JniTest.blurPixels;
 
 public class BlurImage {
 
@@ -48,7 +48,7 @@ public class BlurImage {
         }
 
         //Jni BitMap Blur
-        blurBitmap(bitmap, radius);
+//        blurBitmap(bitmap, radius);
 
         return (bitmap);
     }
@@ -72,7 +72,7 @@ public class BlurImage {
         bitmap.getPixels(pix, 0, w, 0, 0, w, h);
 
         // Jni Pixels Blur
-        blurPixels(pix, w, h, radius);
+//        blurPixels(pix, w, h, radius);
 
         bitmap.setPixels(pix, 0, w, 0, 0, w, h);
 

@@ -7,7 +7,7 @@ import android.os.Build;
 import android.renderscript.Allocation;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -1,32 +1,19 @@
 package com.example.testing.androidlearn;
 
-import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.AttributeSet;
-import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import io.flutter.app.FlutterActivity;
-import io.flutter.app.FlutterFragmentActivity;
 import io.flutter.facade.Flutter;
 import io.flutter.facade.FlutterFragment;
 import io.flutter.plugin.common.BasicMessageChannel;
 import io.flutter.plugin.common.EventChannel;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
-import io.flutter.plugin.common.StringCodec;
-import io.flutter.plugins.GeneratedPluginRegistrant;
-import io.flutter.view.FlutterNativeView;
 import io.flutter.view.FlutterView;
 
 public class MyFlutterActivity extends AppCompatActivity {

@@ -1,6 +1,6 @@
 package com.example.testing.androidlearn;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class NestedScrollActivity extends AppCompatActivity {
