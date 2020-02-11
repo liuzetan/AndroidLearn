@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".ExamViewModelActivity"></activity>
+        <activity android:name=".NavigationActivity"></activity>
+        <activity android:name=".ExamViewModelActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,8 +32,8 @@
         <activity
             android:name=".MyFlutterActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".DIActivity"></activity>
-        <activity android:name="com.kotlin.KotlinActivity"></activity>
+        <activity android:name=".DIActivity" />
+        <activity android:name="com.kotlin.KotlinActivity" />
     </application>
 
 </manifest>
