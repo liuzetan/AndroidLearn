@@ -1,42 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.testing.androidlearn">
+    package="com.example.testing.androidlearn">
 
     <application
-            android:name="com.lzt.MyApplication"
-            android:allowBackup="true"
-            android:icon="@mipmap/ic_launcher"
-            android:label="@string/app_name"
-            android:roundIcon="@mipmap/ic_launcher_round"
-            android:supportsRtl="true"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+        android:name="com.lzt.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".ExamViewModelActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".KotActivity"/>
-        <activity android:name=".CustomActivity"/>
-        <activity android:name=".HorizontalActivity"/>
-        <activity android:name=".NestedScrollActivity"/>
-        <activity android:name=".FormActivity"/>
-        <activity android:name=".ThirdStateCheckBoxActivity"/>
-        <activity android:name=".CircleImageActivity"/>
-        <activity android:name=".JniActivity"/>
-        <activity android:name="com.lzt.blur.BitmapActivity"/>
-        <activity android:name=".HandlerExamActivity"/>
+        <activity android:name=".KotActivity" />
+        <activity android:name=".CustomActivity" />
+        <activity android:name=".HorizontalActivity" />
+        <activity android:name=".NestedScrollActivity" />
+        <activity android:name=".FormActivity" />
+        <activity android:name=".ThirdStateCheckBoxActivity" />
+        <activity android:name=".CircleImageActivity" />
+        <activity android:name=".JniActivity" />
+        <activity android:name="com.lzt.blur.BitmapActivity" />
+        <activity android:name=".HandlerExamActivity" />
         <activity
-                android:name=".MyFlutterActivity"
-                android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity
-            android:name=".MyFlutter2Activity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name=".DIActivity">
-        </activity>
-        <activity android:name="com.kotlin.KotlinActivity">
-        </activity>
+            android:name=".MyFlutterActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".DIActivity"></activity>
+        <activity android:name="com.kotlin.KotlinActivity"></activity>
     </application>
 
 </manifest>

@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         linearLayout = findViewById(R.id.ll_container);
 
+        addButton("ExamViewModel", ExamViewModelActivity.class);
         addButton("kotlin", KotlinActivity.class);
         addButton("自定义ViewPager", HorizontalActivity.class);
         addButton("自定义View", CustomActivity.class);
